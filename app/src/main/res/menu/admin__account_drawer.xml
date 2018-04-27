@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_approveActivities"
+            android:icon="@drawable/ic_action_approveactivities"
+            android:title="Approve Activities" />
+
+        <item
+            android:id="@+id/nav_approveClubs"
+            android:icon="@drawable/ic_action_approveactivities"
+            android:title="Approve Clubs" />
+
+        <item
+            android:id="@+id/nav_adminnotifications"
+            android:icon="@drawable/ic_action_notifications"
+            android:title="Notifications" />
+
+        <item
+            android:id="@+id/nav_settings"
+            android:icon="@drawable/ic_action_settings"
+            android:title="Settings" />
+
+        <item
+            android:id="@+id/nav_information"
+            android:icon="@drawable/ic_action_info"
+            android:title="Information" />
+
+
+        <item
+            android:id="@+id/nav_logout"
+            android:icon="@drawable/ic_action_logout"
+            android:title="Logout" />
+    </group>
+</menu>

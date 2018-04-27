@@ -1,0 +1,70 @@
+<resources>
+    <string name="app_name" translatable="false">BILX</string>
+    <string name="logo" translatable="false"> Logo </string>
+    <string name="login" translatable="false">Login</string>
+    <string name="email" translatable="false">E-mail/Username</string>
+    <string name="signup_email" translatable="false">E-mail</string>
+    <string name="password" translatable="false">Password</string>
+    <string name="forgotpw" translatable="false">Forgot Password?</string>
+    <string name="sign_up" translatable="false">Need an account? Sign Up</string>
+    <string name="signupText" translatable="false">Sign Up</string>
+    <string name="retype_pw" translatable="false">Re-Type Password</string>
+    <string name="username" translatable="false">Username/Club Name</string>
+    <string name="adminName" translatable="false"> Bilkent Administration</string>
+
+
+    <string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>
+    <string name="navigation_drawer_close" translatable="false">Close navigation drawer</string>
+
+    <string name="filter_time" translatable="false">Time</string>
+    <string name="filter_location" translatable="false">Location</string>
+    <string name="filter_gepoints" translatable="false">GE Points</string>
+    <string name="filter_fees" translatable="false">Fees</string>
+    <string name="filter_date" translatable="false">Date</string>
+
+    <string name="nav_header_title" translatable="false">Android Studio</string>
+    <string name="nav_header_subtitle" translatable="false">android.studio@android.com</string>
+    <string name="nav_header_desc" translatable="false">Navigation header</string>
+    <string name="action_settings" translatable="false">Settings</string>
+    <string name="title_activity_club__account" translatable="false">Activities</string>
+    <string name="title_activity_admin__account" translatable="false"></string>
+
+
+    <string name="ApproveActivities" translatable="false">Approve Activities</string>
+    <string name="ApproveClubs" translatable="false">Approve Clubs</string>
+    <string name="Notifications" translatable="false">Notifications</string>
+    <string name="Settings" translatable="false">Settings</string>
+    <string name="Information" translatable="false">Information</string>
+
+    <string name="mode" translatable="false">Dark Mode</string>
+    <string name="language" translatable="false">Switch Language</string>
+    <string name="changepw" translatable="false">Reset Password</string>
+    <string name="changeprofilepic" translatable="false">Change Profile Picture</string>
+    <string name="title_activity_settings" translatable="false">Settings</string>
+
+    <string name="clubActivities" translatable="false">My Activities</string>
+    <string name="clubNotifications" translatable="false">My Notifications</string>
+    <string name="clubProfile" translatable="false">My Profile</string>
+
+    <string name="admin_info" translatable="false">Administrator</string>
+    <string name="club_info" translatable="false">Club</string>
+    <string name="user_info" translatable="false">User</string>
+
+    <string name="title_activity_user__account" translatable="false">Smart Scheduler</string>
+    <string name="allActivities_user" translatable="false">Activities</string>
+    <string name="myActivities_user" translatable="false">My Activities</string>
+    <string name="clubs_user" translatable="false">Clubs</string>
+    <string name="notifications_user" translatable="false">Notifications</string>
+
+    <string name="notifications_sendTo" translatable="false">Send To</string>
+    <string name="adminNotificationsPageMessage" translatable="false">Create and send push notifications to Users,\nClubs  or both</string>
+
+
+
+
+
+
+
+
+
+</resources>

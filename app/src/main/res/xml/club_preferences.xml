@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.v7.preference.PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <android.support.v7.preference.PreferenceCategory>
+        <android.support.v7.preference.SwitchPreferenceCompat
+            android:key="club_theme_mode"
+            android:title="@string/mode"
+            android:summary="Switch dark mode on or off"
+            android:defaultValue="false" />
+
+        <ListPreference
+            android:defaultValue="en"
+            android:entries="@array/languages_offered"
+            android:entryValues="@array/languages_value"
+            android:summary="%s"
+            android:title="@string/language"
+            android:key="club_languages" />
+
+        <Preference
+            android:key="password_reset"
+            android:summary="Set a new password"
+            android:title="@string/changepw"/>
+
+
+    </android.support.v7.preference.PreferenceCategory>
+
+</android.support.v7.preference.PreferenceScreen>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">BILX</string>
+    <string name="logo"> Logo </string>
+    <string name="login">Login</string>
+    <string name="email">E-mail/Username</string>
+    <string name="signup_email">E-mail</string>
+    <string name="password">Password</string>
+    <string name="forgotpw">Forgot Password?</string>
+    <string name="sign_up">Need an account? Sign Up</string>
+    <string name="signupText">Sign Up</string>
+    <string name="retype_pw">Re-Type Password</string>
+    <string name="username">Username/Club Name</string>
+    <string name="adminName"> Bilkent Administration</string>
+
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="filter_time">Time</string>
+    <string name="filter_location">Location</string>
+    <string name="filter_gepoints">GE Points</string>
+    <string name="filter_fees">Fees</string>
+    <string name="filter_date">Date</string>
+
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_club__account">Activities</string>
+    <string name="title_activity_admin__account"></string>
+
+
+    <string name="ApproveActivities">Approve Activities</string>
+    <string name="ApproveClubs">Approve Clubs</string>
+    <string name="Notifications">Notifications</string>
+    <string name="Settings">Settings</string>
+    <string name="Information">Information</string>
+
+    <string name="mode">Dark Mode</string>
+    <string name="language">Switch Language</string>
+    <string name="changepw">Reset Password</string>
+    <string name="changeprofilepic">Change Profile Picture</string>
+    <string name="title_activity_settings">Settings</string>
+
+    <string name="clubActivities">My Activities</string>
+    <string name="clubNotifications">My Notifications</string>
+    <string name="clubProfile">My Profile</string>
+
+    <string name="admin_info">Administrator</string>
+    <string name="club_info">Club</string>
+    <string name="user_info">User</string>
+
+    <string name="title_activity_user__account">Smart Scheduler</string>
+    <string name="allActivities_user">Activities</string>
+    <string name="myActivities_user">My Activities</string>
+    <string name="clubs_user">Clubs</string>
+    <string name="notifications_user">Notifications</string>
+</resources>

@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "440978956093",
+    "firebase_url": "https://cs-bilx.firebaseio.com",
+    "project_id": "cs-bilx",
+    "storage_bucket": "cs-bilx.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:440978956093:android:7fc6eefccbe0a094",
+        "android_client_info": {
+          "package_name": "com.example.www.bilx"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "440978956093-cbhlpgk51l6ds4jmmhcs0fvhkksfui7i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCzpgeIIiVRsb9FU8OEX2NfgANglyG_mic"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/admin_notifications"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/adminNotificationsPageMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="74dp"
+        android:fontFamily="@font/roboto_medium"
+        android:text="@string/adminNotificationsPageMessage"
+        android:textSize="16dp" />
+
+    <TextView
+        android:id="@+id/spinnerText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="29dp"
+        android:layout_marginTop="158dp"
+        android:fontFamily="@font/roboto_medium"
+        android:text="@string/notifications_sendTo"
+        android:textSize="15dp" />
+
+    <Spinner
+        android:id="@+id/sendTo_spinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignTop="@+id/spinnerText"
+        android:layout_marginStart="114dp"
+        android:drawSelectorOnTop="true"
+        android:entries="@array/spinnerItems" />
+
+    <TextView
+        android:id="@+id/notificationMessageHeadline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/spinnerText"
+        android:layout_marginTop="222dp"
+        android:fontFamily="@font/roboto_medium"
+        android:text="Enter Your Notification Message"
+        android:textSize="15dp" />
+
+    <EditText
+        android:id="@+id/Notification_text"
+        android:layout_width="311dp"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/spinnerText"
+        android:layout_below="@+id/notificationMessageHeadline"
+        android:ems="10"
+        android:hint="Enter Notification Message"
+        android:inputType="textMultiLine"
+        android:selectAllOnFocus="true" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/floatingActionButton"
+        android:layout_width="wrap_content"
+        android:layout_height="73dp"
+        android:layout_alignEnd="@+id/Notification_text"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="48dp"
+        android:clickable="true"
+        app:backgroundTint="?android:attr/colorPrimary"
+        app:elevation="2dp"
+        app:fabSize="normal"
+        app:rippleColor="@android:color/holo_blue_bright"
+        app:srcCompat="@android:drawable/ic_menu_send" />
+
+</RelativeLayout>
+

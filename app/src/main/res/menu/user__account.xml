@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_test"
+        android:icon="@drawable/ic_action_filter"
+        android:orderInCategory="1"
+        app:showAsAction="always"
+        android:title="">
+        <menu>
+            <item
+                android:id="@+id/action_time"
+                android:checkable="false"
+                android:orderInCategory="100"
+                android:title="@string/filter_time"
+                app:showAsAction="never" />
+
+            <item
+                android:id="@+id/action_date"
+                android:checkable="false"
+                android:orderInCategory="100"
+                android:title="@string/filter_date"
+                app:showAsAction="never" />
+            <item
+                android:id="@+id/action_location"
+                android:checkable="false"
+                android:orderInCategory="100"
+                android:title="@string/filter_location"
+                app:showAsAction="never" />
+            <item
+                android:id="@+id/action_fees"
+                android:orderInCategory="100"
+                android:title="@string/filter_fees"
+                app:showAsAction="never" />
+            <item
+                android:id="@+id/action_gepoints"
+                android:orderInCategory="100"
+                android:title="@string/filter_gepoints"
+                app:showAsAction="never" />
+        </menu>
+    </item>
+
+</menu>

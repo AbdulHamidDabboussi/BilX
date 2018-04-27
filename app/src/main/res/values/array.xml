@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="languages_offered">
+        <item>English</item>
+        <item>Turkish</item>
+    </string-array>
+    <string-array name="languages_value">
+        <item>en</item>
+        <item>tr</item>
+    </string-array>
+
+
+    <string-array name="spinnerItems">
+        <item>Users</item>
+        <item>Clubs</item>
+        <item>Both</item>
+    </string-array>
+</resources>
