@@ -44,6 +44,7 @@ public class SignUp extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
     private String user_name;
     private Map newUser;
+    private Map check;
     private Query usernameQuery;
 
     @Override
@@ -135,6 +136,7 @@ public class SignUp extends AppCompatActivity {
                                                     .child("Users").child(user_name);
                                             // Create hashmap and put user email as child node of username
                                             newUser = new HashMap();
+                                            check = new HashMap();
                                             if (club.isChecked()){
                                                 AlertDialog.Builder builder;
                                                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -152,6 +154,17 @@ public class SignUp extends AppCompatActivity {
                                                                 DatabaseReference current_user = FirebaseDatabase.getInstance().getReference()
                                                                         .child("Users").child(user_name);
                                                                 current_user.setValue(newUser);
+
+                                                                DatabaseReference check_notify = FirebaseDatabase.getInstance().getReference()
+                                                                        .child("Check Notify").child(user_name).child("Users");
+                                                                check.put("bool", "true");
+                                                                check_notify.setValue(check);
+
+                                                                check_notify = FirebaseDatabase.getInstance().getReference()
+                                                                        .child("Check Notify").child(user_name).child("Both");
+                                                                check.put("bool", "true");
+                                                                check_notify.setValue(check);
+
                                                                 Toast.makeText(SignUp.this, "Account Created", Toast.LENGTH_LONG).show();
                                                                 Intent login = new Intent(SignUp.this, Login_Activity.class);
                                                                 startActivity(login);
@@ -164,6 +177,19 @@ public class SignUp extends AppCompatActivity {
                                                                 newUser.put("email",email_login.getText().toString().trim() );
                                                                 // Set these values
                                                                 current_user.setValue(newUser);
+
+
+                                                                DatabaseReference check_notify = FirebaseDatabase.getInstance().getReference()
+                                                                        .child("Check Notify").child(user_name).child("Clubs");
+                                                                check.put("bool", "true");
+                                                                check_notify.setValue(check);
+
+                                                                check_notify = FirebaseDatabase.getInstance().getReference()
+                                                                        .child("Check Notify").child(user_name).child("Both");
+                                                                check.put("bool", "true");
+                                                                check_notify.setValue(check);
+
+
                                                                 Toast.makeText(SignUp.this, "Account Created", Toast.LENGTH_LONG).show();
                                                                 Intent login = new Intent(SignUp.this, Login_Activity.class);
                                                                 startActivity(login);
@@ -174,6 +200,17 @@ public class SignUp extends AppCompatActivity {
                                             else{
                                                 newUser.put("email",email_login.getText().toString().trim() );
                                                 current_user.setValue(newUser);
+
+                                                DatabaseReference check_notify = FirebaseDatabase.getInstance().getReference()
+                                                        .child("Check Notify").child(user_name).child("Users");
+                                                check.put("bool", "true");
+                                                check_notify.setValue(check);
+
+                                                check_notify = FirebaseDatabase.getInstance().getReference()
+                                                        .child("Check Notify").child(user_name).child("Both");
+                                                check.put("bool", "true");
+                                                check_notify.setValue(check);
+
                                                 Toast.makeText(SignUp.this, "Account Created", Toast.LENGTH_LONG).show();
                                                 Intent login = new Intent(SignUp.this, Login_Activity.class);
                                                 startActivity(login);

@@ -1,6 +1,7 @@
 package com.example.www.bilx.Accounts;
 
 import android.app.Activity;
+import android.app.Notification;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.res.ColorStateList;
@@ -15,6 +16,8 @@ import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.NotificationManagerCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -42,7 +45,12 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -52,6 +60,11 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Timer;
+import java.util.TimerTask;
 
 
 /**
@@ -71,6 +84,7 @@ public class User_Account extends AppCompatActivity
     private SettingsFragment_User settingsFragmentUser;
     public static int count;
     private ImageButton imageButton;
+    Timer timer = new Timer();
 
 
     @Override
@@ -80,6 +94,98 @@ public class User_Account extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        TimerTask timerTask = new TimerTask() {
+            @Override
+            public void run() {
+                //--------------------------------- Starts Notification------------------------------
+                DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Notifications");
+                reference.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        for (DataSnapshot ds : dataSnapshot.getChildren()){
+                            final DataSnapshot ds2 = ds;
+                            try {
+                                final DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Check Notify")
+                                        .child(FirebaseAuth.getInstance().getCurrentUser().getDisplayName()).child("Both");
+                                reference.addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(DataSnapshot dataSnapshot) {
+                                        if (dataSnapshot.getValue().toString().contains("true")) {
+                                            if (ds2.toString().contains("Both")) {
+                                                NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(getApplicationContext())
+                                                        .setSmallIcon(R.mipmap.ic_launcher)
+                                                        .setContentTitle("Bilkent Notification")
+                                                        .setContentText(ds2.child("Message").getValue().toString().substring(ds2.child("Message").
+                                                                getValue().toString().indexOf('=') + 1, ds2.child("Message").getValue().toString().indexOf('}')))
+                                                        .setPriority(NotificationCompat.PRIORITY_DEFAULT);
+                                                Notification notification = mBuilder.build();
+                                                NotificationManagerCompat.from(getApplicationContext()).notify(0, notification);
+
+                                                DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Check Notify")
+                                                        .child(FirebaseAuth.getInstance().getCurrentUser().getDisplayName()).child("Both");
+                                                Map check = new HashMap();
+                                                check.put("Bool", "false");
+                                                reference.setValue(check);
+                                            }
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onCancelled(DatabaseError databaseError) {
+
+                                    }
+                                });
+                            } catch (NullPointerException e){
+                                // Null
+                            }
+                            //User----------------------------------------------------
+                            try {
+                                final DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Check Notify")
+                                        .child(FirebaseAuth.getInstance().getCurrentUser().getDisplayName()).child("Users");
+                                reference.addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(DataSnapshot dataSnapshot) {
+                                        if (dataSnapshot.getValue().toString().contains("true")) {
+                                            if (ds2.toString().contains("Users")) {
+                                                NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(getApplicationContext())
+                                                        .setSmallIcon(R.mipmap.ic_launcher)
+                                                        .setContentTitle("Bilkent Notification")
+                                                        .setContentText(ds2.child("Message").getValue().toString().substring(ds2.child("Message").
+                                                                getValue().toString().indexOf('=') + 1, ds2.child("Message").getValue().toString().indexOf('}')))
+                                                        .setPriority(NotificationCompat.PRIORITY_DEFAULT);
+                                                Notification notification = mBuilder.build();
+                                                NotificationManagerCompat.from(getApplicationContext()).notify(1, notification);
+
+                                                DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Check Notify")
+                                                        .child(FirebaseAuth.getInstance().getCurrentUser().getDisplayName()).child("Users");
+                                                Map check = new HashMap();
+                                                check.put("Bool", "false");
+                                                reference.setValue(check);
+                                            }
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onCancelled(DatabaseError databaseError) {
+
+                                    }
+                                });
+                            } catch (NullPointerException e){
+                                // Null
+                            }
+                            //end
+                        }
+                        //--------------------------------- Ends Notification------------------------------
+                    }
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                    }
+                });
+            }
+        };
+
+
+        timer.scheduleAtFixedRate(timerTask, 0, 60*1000);
 
         /**
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -91,6 +197,9 @@ public class User_Account extends AppCompatActivity
             }
         });
          **/
+
+
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -155,6 +264,7 @@ public class User_Account extends AppCompatActivity
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.user__account, menu);
+
 
         // Set email in navigation drawer to user's email
         firebaseAuth = FirebaseAuth.getInstance();
@@ -244,6 +354,7 @@ public class User_Account extends AppCompatActivity
             getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, new User_Information()).commit();
             this.getSupportActionBar().setTitle(R.string.Information);
         }  else if (id == R.id.nav_logout) {
+            timer.cancel();
             count = 0;
             FirebaseAuth.getInstance().signOut();
             Intent logout = new Intent(User_Account.this, Login_Activity.class);
