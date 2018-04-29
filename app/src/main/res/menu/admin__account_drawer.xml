@@ -11,8 +11,8 @@
 
         <item
             android:id="@+id/nav_approveClubs"
-            android:icon="@drawable/ic_action_approveactivities"
-            android:title="Approve Clubs" />
+            android:icon="@drawable/ic_action_passcode"
+            android:title="Create Passcodes" />
 
         <item
             android:id="@+id/nav_adminnotifications"

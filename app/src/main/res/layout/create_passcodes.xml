@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/admin_notifications"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/adminNotificationsPageMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="74dp"
+        android:fontFamily="@font/roboto_medium"
+        android:text="@string/passcode_message"
+        android:textSize="16dp" />
+
+
+    <TextView
+        android:id="@+id/notificationMessageHeadline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/adminNotificationsPageMessage"
+        android:layout_marginTop="222dp"
+        android:fontFamily="@font/roboto_medium"
+        android:text="Enter The Club Email"
+        android:textSize="15dp" />
+
+    <EditText
+        android:id="@+id/club_email_enter"
+        android:layout_width="234dp"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/adminNotificationsPageMessage"
+        android:layout_below="@+id/notificationMessageHeadline"
+        android:ems="10"
+        android:hint="Club Email"
+        android:inputType="textEmailAddress"
+        android:selectAllOnFocus="true"
+        android:singleLine="true" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/passcode_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="73dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="33dp"
+        android:layout_marginEnd="35dp"
+        android:clickable="true"
+        app:backgroundTint="?android:attr/colorPrimary"
+        app:elevation="10dp"
+        app:fabSize="normal"
+        app:rippleColor="@android:color/holo_blue_bright"
+        app:srcCompat="@android:drawable/ic_menu_send" />
+
+    <Button
+        android:id="@+id/generate_passcode"
+        style="@style/button_style"
+        android:layout_width="250dp"
+        android:layout_height="30dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="57dp"
+        android:layout_marginTop="130dp"
+        android:background="#0b113b"
+        android:backgroundTint="?android:attr/colorPrimary"
+        android:text="Generate Passcode" />
+
+    <TextView
+        android:id="@+id/show_passcode_text"
+        android:layout_width="221dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/adminNotificationsPageMessage"
+        android:layout_marginTop="188dp"
+        android:text="Generated Passcode:" />
+
+    <TextView
+        android:id="@+id/show_passcode"
+        android:layout_width="105dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto_medium"
+        android:textSize="15dp"
+        android:layout_alignEnd="@+id/generate_passcode"
+        android:layout_alignTop="@+id/show_passcode_text" />
+
+</RelativeLayout>

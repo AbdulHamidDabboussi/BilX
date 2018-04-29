@@ -11,15 +11,22 @@ import android.support.v7.preference.PreferenceFragmentCompat;
 import android.support.v7.preference.SwitchPreferenceCompat;
 import android.widget.Toast;
 
+import com.example.www.bilx.Accounts.Club_Account;
 import com.example.www.bilx.Accounts.User_Account;
 import com.example.www.bilx.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  *  The settings fragment for the user class.
@@ -59,28 +66,50 @@ public class SettingsFragment_User extends PreferenceFragmentCompat  {
 
 
         darkMode = (SwitchPreferenceCompat) findPreference("user_theme_mode");
-        if (darkMode.isChecked()){
-            darkMode.setChecked(true);
-        }
-        else{
-            darkMode.setChecked(false);
-        }
-        darkMode.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
-            @Override
-            public boolean onPreferenceChange(Preference pref, Object object) {
-                boolean isChecked = (Boolean) object;
-                if (isChecked) {
-                    User_Account.isDark = true;
-                    User_Account.count++;
-                    getActivity().recreate();
+
+        if (FirebaseAuth.getInstance().getCurrentUser().getDisplayName() != null) {
+            DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Dark Mode").
+                    child(FirebaseAuth.getInstance().getCurrentUser().getDisplayName());
+            databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    if (dataSnapshot.getValue().toString().contains("true")) {
+                        darkMode.setChecked(true);
+                    } else {
+                        darkMode.setChecked(false);
+                    }
                 }
-                else {
-                    User_Account.isDark = false;
-                    User_Account.count++;
-                    getActivity().recreate();
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
                 }
-                return true;
-            }
-        });
+            });
+        }
+
+
+            darkMode.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+                @Override
+                public boolean onPreferenceChange(Preference pref, Object object) {
+                    boolean isChecked = (Boolean) object;
+                    Map mode = new HashMap();
+                    if (isChecked) {
+                        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Dark Mode")
+                                .child(FirebaseAuth.getInstance().getCurrentUser().getDisplayName());
+                        mode.put("Mode","true");
+                        databaseReference.setValue(mode);
+                        User_Account.count++;
+                        getActivity().recreate();
+                    } else {
+                        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Dark Mode")
+                                .child(FirebaseAuth.getInstance().getCurrentUser().getDisplayName());
+                        mode.put("Mode","false");
+                        databaseReference.setValue(mode);
+                        User_Account.count++;
+                        getActivity().recreate();
+                    }
+                    return true;
+                }
+            });
     }
 }

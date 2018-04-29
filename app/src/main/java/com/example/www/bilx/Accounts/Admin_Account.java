@@ -6,6 +6,7 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -13,17 +14,15 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.AppCompatDelegate;
-import android.support.v7.preference.SwitchPreferenceCompat;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.www.bilx.Fragments.Admin.ApproveActivities;
-import com.example.www.bilx.Fragments.Admin.ApproveClubs;
+import com.example.www.bilx.Fragments.Admin.CreatePasscodes;
 import com.example.www.bilx.Fragments.Admin.SettingsFragment_admin;
 import com.example.www.bilx.Fragments.Admin.NotificationsAdmin;
 import com.example.www.bilx.Fragments.Information.Admin_Information;
@@ -32,6 +31,11 @@ import com.example.www.bilx.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -51,7 +55,6 @@ public class Admin_Account extends AppCompatActivity
     private TextView navEmail;
     private TextView navUsername;
     private FirebaseAuth firebaseAuth;
-    public static boolean isDark;
     private SettingsFragment_admin settingsFragmentAdmin;
     public static int count;
     private ImageButton imageButton;
@@ -82,35 +85,48 @@ public class Admin_Account extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        final NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
         // Change theme to dark
         settingsFragmentAdmin = new SettingsFragment_admin();
-        if (isDark){
-            getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-            int[][] states = new int[][] {
-                    new int[] { android.R.attr.state_enabled}, // enabled
-                    new int[] {-android.R.attr.state_enabled}, // disabled
-                    new int[] {-android.R.attr.state_checked}, // unchecked
-                    new int[] { android.R.attr.state_pressed}  // pressed
-            };
 
-            int[] colors = new int[] {
-                    Color.WHITE,
-                    Color.WHITE,
-                    Color.GREEN,
-                    Color.YELLOW
-            };
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Dark Mode")
+                .child("admin");
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.getValue().toString().contains("true")){
+                    getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                    int[][] states = new int[][] {
+                            new int[] { android.R.attr.state_enabled}, // enabled
+                            new int[] {-android.R.attr.state_enabled}, // disabled
+                            new int[] {-android.R.attr.state_checked}, // unchecked
+                            new int[] { android.R.attr.state_pressed}  // pressed
+                    };
 
-            ColorStateList myList = new ColorStateList(states, colors);
+                    int[] colors = new int[] {
+                            Color.WHITE,
+                            Color.WHITE,
+                            Color.GREEN,
+                            Color.YELLOW
+                    };
 
-            navigationView.setItemTextColor(myList);
-            navigationView.setItemIconTintList(myList);
-        }
-        else{
-            getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-        }
+                    ColorStateList myList = new ColorStateList(states, colors);
+
+                    navigationView.setItemTextColor(myList);
+                    navigationView.setItemIconTintList(myList);
+                }
+                else{
+                    getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
 
         if (count == 0){
             getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, new ApproveActivities()).commit();
@@ -209,8 +225,8 @@ public class Admin_Account extends AppCompatActivity
             getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, new ApproveActivities()).commit();
             this.getSupportActionBar().setTitle(R.string.ApproveActivities);
         } else if (id == R.id.nav_approveClubs) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, new ApproveClubs()).commit();
-            this.getSupportActionBar().setTitle(R.string.ApproveClubs);
+            getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, new CreatePasscodes()).commit();
+            this.getSupportActionBar().setTitle(R.string.CreatePasscodes);
 
         } else if (id == R.id.nav_adminnotifications) {
             getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, new NotificationsAdmin()).commit();

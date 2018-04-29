@@ -9,4 +9,8 @@
     <!-- Overriding sizes of the FAB -->
     <dimen name="design_fab_size_normal">50dp</dimen>
     <dimen name="design_fab_size_mini">30dp</dimen>
+
+
+    <dimen name="row_padding_vertical">10dp</dimen>
+
 </resources>

@@ -1,7 +1,10 @@
 package com.example.www.bilx.Fragments.Admin;
 
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.preference.ListPreference;
 import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceFragmentCompat;
@@ -13,6 +16,14 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.example.www.bilx.R;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.HashMap;
+import java.util.Map;
 
 
 /**
@@ -34,21 +45,43 @@ public class SettingsFragment_admin extends PreferenceFragmentCompat {
         language = (ListPreference) findPreference("admin_languages");
 
         // Implementation of dark mode
-        if (darkMode.isChecked()) {
-            darkMode.setChecked(true);
-        } else {
-            darkMode.setChecked(false);
-        }
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Dark Mode")
+                .child("admin");
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.getValue().toString().contains("true")){
+                    darkMode.setChecked(true);
+                }
+                else{
+                    darkMode.setChecked(false);
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+
         darkMode.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
             @Override
             public boolean onPreferenceChange(Preference pref, Object object) {
                 boolean isChecked = (Boolean) object;
+                Map mode = new HashMap();
                 if (isChecked) {
-                    Admin_Account.isDark = true;
+                    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Dark Mode")
+                            .child("admin");
+                    mode.put("Mode","true");
+                    databaseReference.setValue(mode);
                     Admin_Account.count++;
                     getActivity().recreate();
                 } else {
-                    Admin_Account.isDark = false;
+                    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Dark Mode")
+                            .child("admin");
+                    mode.put("Mode","false");
+                    databaseReference.setValue(mode);
                     Admin_Account.count++;
                     getActivity().recreate();
                 }

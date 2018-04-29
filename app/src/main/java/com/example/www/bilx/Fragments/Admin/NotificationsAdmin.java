@@ -3,6 +3,7 @@ package com.example.www.bilx.Fragments.Admin;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.os.Bundle;
+import android.service.autofill.Dataset;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.NotificationCompat;
@@ -16,6 +17,16 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.www.bilx.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Random;
 
 
 /**
@@ -27,6 +38,8 @@ public class NotificationsAdmin extends android.support.v4.app.Fragment {
     private Spinner admin_spinner;
     private EditText notify_text;
     private FloatingActionButton fab;
+    private Map notify;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState){
@@ -40,7 +53,6 @@ public class NotificationsAdmin extends android.support.v4.app.Fragment {
         admin_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
                 Object item = parent.getItemAtPosition(pos);
-                Toast.makeText(getActivity(), (String)item, Toast.LENGTH_LONG).show();
             }
             public void onNothingSelected(AdapterView<?> parent) {
             }
@@ -59,12 +71,107 @@ public class NotificationsAdmin extends android.support.v4.app.Fragment {
                         .setContentText(s)
                         .setPriority(NotificationCompat.PRIORITY_DEFAULT);
                 Notification notification = mBuilder.build();
+
+                //-------------------- Username database --------------------------------
+                // Structure of database
+                // Create hashmap and put user email as child node of username
+
+                notify = new HashMap();
+                if (admin_spinner.getSelectedItem().toString().equals("Users")){
+
+                    DatabaseReference current_user = FirebaseDatabase.getInstance().getReference()
+                            .child("Notifications").child("Users").child("Message");
+                    notify.put("Value",s );
+                    current_user.setValue(notify);
+
+                    DatabaseReference users_data = FirebaseDatabase.getInstance().getReference()
+                            .child("Check Notify");
+                    users_data.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                                String name = ds.toString().substring(ds.toString().indexOf('=') + 1
+                                        , ds.toString().indexOf(',')).trim();
+
+                                DatabaseReference dat = FirebaseDatabase.getInstance().getReference()
+                                        .child("Check Notify").child(name).child("Users");
+                                Map check = new HashMap();
+                                check.put("Bool", "true");
+                                dat.setValue(check);
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+
+                        }
+                    });
+
+                }
+                else if (admin_spinner.getSelectedItem().toString().equals("Clubs")){
+                    DatabaseReference current_user = FirebaseDatabase.getInstance().getReference()
+                            .child("Notifications").child("Clubs").child("Message");
+                    notify.put("Value",s );
+                    current_user.setValue(notify);
+
+                    DatabaseReference users_data = FirebaseDatabase.getInstance().getReference()
+                            .child("Check Notify");
+                    users_data.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                                String name = ds.toString().substring(ds.toString().indexOf('=') + 1
+                                        , ds.toString().indexOf(',')).trim();
+
+                                DatabaseReference dat = FirebaseDatabase.getInstance().getReference()
+                                        .child("Check Notify").child(name).child("Clubs");
+                                Map check = new HashMap();
+                                check.put("Bool", "true");
+                                dat.setValue(check);
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+
+                        }
+                    });
+
+
+
+                }
+                else{
+                    DatabaseReference current_user = FirebaseDatabase.getInstance().getReference()
+                            .child("Notifications").child("Both").child("Message");
+                    notify.put("Value",s );
+                    current_user.setValue(notify);
+
+                        DatabaseReference users_data = FirebaseDatabase.getInstance().getReference()
+                                .child("Check Notify");
+                        users_data.addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(DataSnapshot dataSnapshot) {
+                                for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                                    String name = ds.toString().substring(ds.toString().indexOf('=') + 1
+                                            , ds.toString().indexOf(',')).trim();
+
+                                    DatabaseReference dat = FirebaseDatabase.getInstance().getReference()
+                                            .child("Check Notify").child(name).child("Both");
+                                    Map check = new HashMap();
+                                    check.put("Bool", "true");
+                                    dat.setValue(check);
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(DatabaseError databaseError) {
+
+                            }
+                        });
+                }
                 NotificationManagerCompat.from(getActivity()).notify(0,notification);
             }
         });
-
-
-
         return view;
     }
 }
