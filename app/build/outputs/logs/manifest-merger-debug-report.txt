@@ -34,8 +34,9 @@ MERGED from [com.google.android.gms:play-services-basement:15.0.0] C:\Users\Hanz
 MERGED from [com.android.support:support-v4:26.1.0] C:\Users\Hanzallah Burney\.gradle\caches\transforms-1\files-1.1\support-v4-26.1.0.aar\00cbd1ac473d9580e8e5aa607c143ada\AndroidManifest.xml:17:1-31:12
 MERGED from [de.hdodenhof:circleimageview:1.3.0] C:\Users\Hanzallah Burney\.gradle\caches\transforms-1\files-1.1\circleimageview-1.3.0.aar\3f58d9e53b677cc148277e9a6906c9bf\AndroidManifest.xml:2:1-11:12
 MERGED from [com.squareup.picasso:picasso:2.71828] C:\Users\Hanzallah Burney\.gradle\caches\transforms-1\files-1.1\picasso-2.71828.aar\5b8dbd48584ed35e248125851560a9ca\AndroidManifest.xml:2:1-14:12
-MERGED from [com.android.support:exifinterface:27.1.0] C:\Users\Hanzallah Burney\.gradle\caches\transforms-1\files-1.1\exifinterface-27.1.0.aar\eba6bc9dd3e8a248a730174efa1bcedb\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:cardview-v7:21.0.3] C:\Users\Hanzallah Burney\.gradle\caches\transforms-1\files-1.1\cardview-v7-21.0.3.aar\25a1279d60f022391d176facc3b6d399\AndroidManifest.xml:14:4-17:12
 MERGED from [com.android.support:recyclerview-v7:26.1.0] C:\Users\Hanzallah Burney\.gradle\caches\transforms-1\files-1.1\recyclerview-v7-26.1.0.aar\50f59481e27dad8545a109dcb171bc7d\AndroidManifest.xml:17:1-28:12
+MERGED from [com.android.support:exifinterface:27.1.0] C:\Users\Hanzallah Burney\.gradle\caches\transforms-1\files-1.1\exifinterface-27.1.0.aar\eba6bc9dd3e8a248a730174efa1bcedb\AndroidManifest.xml:17:1-22:12
 MERGED from [com.android.support:animated-vector-drawable:26.1.0] C:\Users\Hanzallah Burney\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-26.1.0.aar\65868bf5e3fc7f73cfd2b4d073e12150\AndroidManifest.xml:17:1-28:12
 MERGED from [com.android.support:support-fragment:26.1.0] C:\Users\Hanzallah Burney\.gradle\caches\transforms-1\files-1.1\support-fragment-26.1.0.aar\cb9cb6b81fd2dc4821f0fadef7411e65\AndroidManifest.xml:17:1-31:12
 MERGED from [com.android.support:support-core-ui:26.1.0] C:\Users\Hanzallah Burney\.gradle\caches\transforms-1\files-1.1\support-core-ui-26.1.0.aar\e5f364d1336421537b643f8ed2c01a88\AndroidManifest.xml:17:1-31:12
@@ -132,6 +133,8 @@ MERGED from [de.hdodenhof:circleimageview:1.3.0] C:\Users\Hanzallah Burney\.grad
 MERGED from [de.hdodenhof:circleimageview:1.3.0] C:\Users\Hanzallah Burney\.gradle\caches\transforms-1\files-1.1\circleimageview-1.3.0.aar\3f58d9e53b677cc148277e9a6906c9bf\AndroidManifest.xml:9:5-20
 MERGED from [com.squareup.picasso:picasso:2.71828] C:\Users\Hanzallah Burney\.gradle\caches\transforms-1\files-1.1\picasso-2.71828.aar\5b8dbd48584ed35e248125851560a9ca\AndroidManifest.xml:7:5-12:19
 MERGED from [com.squareup.picasso:picasso:2.71828] C:\Users\Hanzallah Burney\.gradle\caches\transforms-1\files-1.1\picasso-2.71828.aar\5b8dbd48584ed35e248125851560a9ca\AndroidManifest.xml:7:5-12:19
+MERGED from [com.android.support:cardview-v7:21.0.3] C:\Users\Hanzallah Burney\.gradle\caches\transforms-1\files-1.1\cardview-v7-21.0.3.aar\25a1279d60f022391d176facc3b6d399\AndroidManifest.xml:16:5-19
+MERGED from [com.android.support:cardview-v7:21.0.3] C:\Users\Hanzallah Burney\.gradle\caches\transforms-1\files-1.1\cardview-v7-21.0.3.aar\25a1279d60f022391d176facc3b6d399\AndroidManifest.xml:16:5-19
 MERGED from [com.android.support:recyclerview-v7:26.1.0] C:\Users\Hanzallah Burney\.gradle\caches\transforms-1\files-1.1\recyclerview-v7-26.1.0.aar\50f59481e27dad8545a109dcb171bc7d\AndroidManifest.xml:22:5-26:19
 MERGED from [com.android.support:recyclerview-v7:26.1.0] C:\Users\Hanzallah Burney\.gradle\caches\transforms-1\files-1.1\recyclerview-v7-26.1.0.aar\50f59481e27dad8545a109dcb171bc7d\AndroidManifest.xml:22:5-26:19
 MERGED from [com.android.support:animated-vector-drawable:26.1.0] C:\Users\Hanzallah Burney\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-26.1.0.aar\65868bf5e3fc7f73cfd2b4d073e12150\AndroidManifest.xml:22:5-26:19
@@ -300,10 +303,12 @@ MERGED from [de.hdodenhof:circleimageview:1.3.0] C:\Users\Hanzallah Burney\.grad
 MERGED from [de.hdodenhof:circleimageview:1.3.0] C:\Users\Hanzallah Burney\.gradle\caches\transforms-1\files-1.1\circleimageview-1.3.0.aar\3f58d9e53b677cc148277e9a6906c9bf\AndroidManifest.xml:5:5-7:41
 MERGED from [com.squareup.picasso:picasso:2.71828] C:\Users\Hanzallah Burney\.gradle\caches\transforms-1\files-1.1\picasso-2.71828.aar\5b8dbd48584ed35e248125851560a9ca\AndroidManifest.xml:5:5-44
 MERGED from [com.squareup.picasso:picasso:2.71828] C:\Users\Hanzallah Burney\.gradle\caches\transforms-1\files-1.1\picasso-2.71828.aar\5b8dbd48584ed35e248125851560a9ca\AndroidManifest.xml:5:5-44
-MERGED from [com.android.support:exifinterface:27.1.0] C:\Users\Hanzallah Burney\.gradle\caches\transforms-1\files-1.1\exifinterface-27.1.0.aar\eba6bc9dd3e8a248a730174efa1bcedb\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:exifinterface:27.1.0] C:\Users\Hanzallah Burney\.gradle\caches\transforms-1\files-1.1\exifinterface-27.1.0.aar\eba6bc9dd3e8a248a730174efa1bcedb\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:cardview-v7:21.0.3] C:\Users\Hanzallah Burney\.gradle\caches\transforms-1\files-1.1\cardview-v7-21.0.3.aar\25a1279d60f022391d176facc3b6d399\AndroidManifest.xml:15:5-42
+MERGED from [com.android.support:cardview-v7:21.0.3] C:\Users\Hanzallah Burney\.gradle\caches\transforms-1\files-1.1\cardview-v7-21.0.3.aar\25a1279d60f022391d176facc3b6d399\AndroidManifest.xml:15:5-42
 MERGED from [com.android.support:recyclerview-v7:26.1.0] C:\Users\Hanzallah Burney\.gradle\caches\transforms-1\files-1.1\recyclerview-v7-26.1.0.aar\50f59481e27dad8545a109dcb171bc7d\AndroidManifest.xml:20:5-44
 MERGED from [com.android.support:recyclerview-v7:26.1.0] C:\Users\Hanzallah Burney\.gradle\caches\transforms-1\files-1.1\recyclerview-v7-26.1.0.aar\50f59481e27dad8545a109dcb171bc7d\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:exifinterface:27.1.0] C:\Users\Hanzallah Burney\.gradle\caches\transforms-1\files-1.1\exifinterface-27.1.0.aar\eba6bc9dd3e8a248a730174efa1bcedb\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:exifinterface:27.1.0] C:\Users\Hanzallah Burney\.gradle\caches\transforms-1\files-1.1\exifinterface-27.1.0.aar\eba6bc9dd3e8a248a730174efa1bcedb\AndroidManifest.xml:20:5-44
 MERGED from [com.android.support:animated-vector-drawable:26.1.0] C:\Users\Hanzallah Burney\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-26.1.0.aar\65868bf5e3fc7f73cfd2b4d073e12150\AndroidManifest.xml:20:5-44
 MERGED from [com.android.support:animated-vector-drawable:26.1.0] C:\Users\Hanzallah Burney\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-26.1.0.aar\65868bf5e3fc7f73cfd2b4d073e12150\AndroidManifest.xml:20:5-44
 MERGED from [com.android.support:support-fragment:26.1.0] C:\Users\Hanzallah Burney\.gradle\caches\transforms-1\files-1.1\support-fragment-26.1.0.aar\cb9cb6b81fd2dc4821f0fadef7411e65\AndroidManifest.xml:21:5-23:60

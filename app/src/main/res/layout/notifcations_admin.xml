@@ -7,17 +7,6 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/adminNotificationsPageMessage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="74dp"
-        android:fontFamily="@font/roboto_medium"
-        android:text="@string/adminNotificationsPageMessage"
-        android:textSize="16dp" />
-
-    <TextView
         android:id="@+id/spinnerText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -28,6 +17,17 @@
         android:fontFamily="@font/roboto_medium"
         android:text="@string/notifications_sendTo"
         android:textSize="15dp" />
+
+    <TextView
+        android:id="@+id/adminNotificationsPageMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="74dp"
+        android:fontFamily="@font/roboto_medium"
+        android:text="@string/adminNotificationsPageMessage"
+        android:textSize="16dp" />
 
     <Spinner
         android:id="@+id/sendTo_spinner"
@@ -65,12 +65,12 @@
         android:id="@+id/floatingActionButton"
         android:layout_width="wrap_content"
         android:layout_height="73dp"
-        android:layout_alignEnd="@+id/Notification_text"
+        android:layout_alignEnd="@+id/adminNotificationsPageMessage"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="48dp"
+        android:layout_marginBottom="33dp"
         android:clickable="true"
         app:backgroundTint="?android:attr/colorPrimary"
-        app:elevation="2dp"
+        app:elevation="10dp"
         app:fabSize="normal"
         app:rippleColor="@android:color/holo_blue_bright"
         app:srcCompat="@android:drawable/ic_menu_send" />

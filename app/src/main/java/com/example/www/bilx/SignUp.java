@@ -4,10 +4,12 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.text.InputType;
 import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
@@ -138,61 +140,77 @@ public class SignUp extends AppCompatActivity {
                                             newUser = new HashMap();
                                             check = new HashMap();
                                             if (club.isChecked()){
-                                                AlertDialog.Builder builder;
+                                                final AlertDialog.Builder builder;
                                                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                                                     builder = new AlertDialog.Builder(SignUp.this, android.R.style.Theme_Material_Dialog_Alert);
                                                 } else {
                                                     builder = new AlertDialog.Builder(SignUp.this);
                                                 }
                                                 builder.setTitle("Club Account Confirmation")
-                                                        .setMessage("Are you sure you want to register as a club?")
-                                                        .setNegativeButton("No! I'm a user", new DialogInterface.OnClickListener() {
+                                                        .setMessage("Enter The Passcode Assigned");
+                                                        final EditText input = new EditText(SignUp.this);
+                                                        input.setInputType(InputType.TYPE_CLASS_NUMBER);
+                                                        input.setTextColor(Color.WHITE);
+                                                        builder.setView(input)
+                                                                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                                                                    public void onClick(DialogInterface dialog, int which) {
+                                                                        builder.setCancelable(true);
+                                                                        FirebaseAuth.getInstance().getCurrentUser().delete();
+                                                                    }
+                                                                });
+                                                        builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                                                             public void onClick(DialogInterface dialog, int which) {
-                                                                club.setChecked(false);
-                                                                newUser.put("email",email_login.getText().toString().trim() );
-                                                                // Set these values
-                                                                DatabaseReference current_user = FirebaseDatabase.getInstance().getReference()
-                                                                        .child("Users").child(user_name);
-                                                                current_user.setValue(newUser);
+                                                                final String s = input.getText().toString();
 
-                                                                DatabaseReference check_notify = FirebaseDatabase.getInstance().getReference()
-                                                                        .child("Check Notify").child(user_name).child("Users");
-                                                                check.put("bool", "true");
-                                                                check_notify.setValue(check);
-
-                                                                check_notify = FirebaseDatabase.getInstance().getReference()
-                                                                        .child("Check Notify").child(user_name).child("Both");
-                                                                check.put("bool", "true");
-                                                                check_notify.setValue(check);
-
-                                                                Toast.makeText(SignUp.this, "Account Created", Toast.LENGTH_LONG).show();
-                                                                Intent login = new Intent(SignUp.this, Login_Activity.class);
-                                                                startActivity(login);
-                                                            }
-                                                        })
-                                                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                                                            public void onClick(DialogInterface dialog, int which) {
-                                                                DatabaseReference current_user = FirebaseDatabase.getInstance().getReference()
-                                                                        .child("Users").child(user_name).child("club");
-                                                                newUser.put("email",email_login.getText().toString().trim() );
-                                                                // Set these values
-                                                                current_user.setValue(newUser);
+                                                                DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Passcodes");
+                                                                reference.addListenerForSingleValueEvent(new ValueEventListener() {
+                                                                    @Override
+                                                                    public void onDataChange(DataSnapshot dataSnapshot) {
+                                                                        int index = 0;
+                                                                        for (DataSnapshot ds: dataSnapshot.getChildren()){
+                                                                            index++;
+                                                                            if (ds.getValue().toString().contains(s)){
+                                                                                DatabaseReference current_user = FirebaseDatabase.getInstance().getReference()
+                                                                                        .child("Users").child(user_name).child("club");
+                                                                                newUser.put("email",email_login.getText().toString().trim() );
+                                                                                // Set these values
+                                                                                current_user.setValue(newUser);
 
 
-                                                                DatabaseReference check_notify = FirebaseDatabase.getInstance().getReference()
-                                                                        .child("Check Notify").child(user_name).child("Clubs");
-                                                                check.put("bool", "true");
-                                                                check_notify.setValue(check);
+                                                                                DatabaseReference check_notify = FirebaseDatabase.getInstance().getReference()
+                                                                                        .child("Check Notify").child(user_name).child("Clubs");
+                                                                                check.put("bool", "true");
+                                                                                check_notify.setValue(check);
 
-                                                                check_notify = FirebaseDatabase.getInstance().getReference()
-                                                                        .child("Check Notify").child(user_name).child("Both");
-                                                                check.put("bool", "true");
-                                                                check_notify.setValue(check);
+                                                                                check_notify = FirebaseDatabase.getInstance().getReference()
+                                                                                        .child("Check Notify").child(user_name).child("Both");
+                                                                                check.put("bool", "true");
+                                                                                check_notify.setValue(check);
 
 
-                                                                Toast.makeText(SignUp.this, "Account Created", Toast.LENGTH_LONG).show();
-                                                                Intent login = new Intent(SignUp.this, Login_Activity.class);
-                                                                startActivity(login);
+                                                                                DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Dark Mode").
+                                                                                        child(user_name);
+                                                                                Map mode = new HashMap();
+                                                                                mode.put("Bool","false");
+                                                                                databaseReference.setValue(mode);
+
+
+                                                                                Toast.makeText(SignUp.this, "Account Created", Toast.LENGTH_LONG).show();
+                                                                                Intent login = new Intent(SignUp.this, Login_Activity.class);
+                                                                                startActivity(login);
+                                                                            }
+                                                                            else if (index == dataSnapshot.getChildrenCount() && !ds.getValue().toString().contains(s) ) {
+                                                                                FirebaseAuth.getInstance().getCurrentUser().delete();
+                                                                                Toast.makeText(getApplicationContext(),"Invalid Passcode", Toast.LENGTH_LONG).show();
+                                                                            }
+                                                                        }
+                                                                    }
+
+                                                                    @Override
+                                                                    public void onCancelled(DatabaseError databaseError) {
+
+                                                                    }
+                                                                });
                                                             }
                                                         })
                                                         .show();
@@ -210,6 +228,13 @@ public class SignUp extends AppCompatActivity {
                                                         .child("Check Notify").child(user_name).child("Both");
                                                 check.put("bool", "true");
                                                 check_notify.setValue(check);
+
+
+                                                DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Dark Mode").
+                                                        child(user_name);
+                                                Map mode = new HashMap();
+                                                mode.put("Bool","false");
+                                                databaseReference.setValue(mode);
 
                                                 Toast.makeText(SignUp.this, "Account Created", Toast.LENGTH_LONG).show();
                                                 Intent login = new Intent(SignUp.this, Login_Activity.class);
@@ -236,7 +261,5 @@ public class SignUp extends AppCompatActivity {
 
             }
         });
-
-
     }
 }

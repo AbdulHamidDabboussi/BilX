@@ -31,7 +31,7 @@
 
 
     <string name="ApproveActivities" translatable="false">Approve Activities</string>
-    <string name="ApproveClubs" translatable="false">Approve Clubs</string>
+    <string name="CreatePasscodes" translatable="false">Create Passcodes</string>
     <string name="Notifications" translatable="false">Notifications</string>
     <string name="Settings" translatable="false">Settings</string>
     <string name="Information" translatable="false">Information</string>
@@ -60,7 +60,7 @@
     <string name="adminNotificationsPageMessage" translatable="false">Create and send push notifications to Users,\nClubs  or both</string>
 
 
-
+    <string name="passcode_message" translatable="false">Create Passcodes to authenticate clubs \n and send them to club emails</string>
 
 
 

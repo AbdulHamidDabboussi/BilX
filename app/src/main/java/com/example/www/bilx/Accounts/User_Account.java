@@ -80,7 +80,6 @@ public class User_Account extends AppCompatActivity
     private TextView navEmail;
     private TextView navUsername;
     private FirebaseAuth firebaseAuth;
-    public static boolean isDark;
     private SettingsFragment_User settingsFragmentUser;
     public static int count;
     private ImageButton imageButton;
@@ -129,7 +128,6 @@ public class User_Account extends AppCompatActivity
                                             }
                                         }
                                     }
-
                                     @Override
                                     public void onCancelled(DatabaseError databaseError) {
 
@@ -184,8 +182,7 @@ public class User_Account extends AppCompatActivity
             }
         };
 
-
-        timer.scheduleAtFixedRate(timerTask, 0, 60*1000);
+        timer.scheduleAtFixedRate(timerTask, 0, 5*1000);
 
         /**
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -207,34 +204,49 @@ public class User_Account extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        final NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
         // Change theme to dark
         settingsFragmentUser = new SettingsFragment_User();
-        if (isDark){
-            getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-            int[][] states = new int[][] {
-                    new int[] { android.R.attr.state_enabled}, // enabled
-                    new int[] {-android.R.attr.state_enabled}, // disabled
-                    new int[] {-android.R.attr.state_checked}, // unchecked
-                    new int[] { android.R.attr.state_pressed}  // pressed
-            };
+        if (FirebaseAuth.getInstance().getCurrentUser().getDisplayName() != null){
+            DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Dark Mode").
+                    child(FirebaseAuth.getInstance().getCurrentUser().getDisplayName());
+            databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    if (dataSnapshot.getValue().toString().contains("true")){
+                        getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                        int[][] states = new int[][] {
+                                new int[] { android.R.attr.state_enabled}, // enabled
+                                new int[] {-android.R.attr.state_enabled}, // disabled
+                                new int[] {-android.R.attr.state_checked}, // unchecked
+                                new int[] { android.R.attr.state_pressed}  // pressed
+                        };
 
-            int[] colors = new int[] {
-                    Color.WHITE,
-                    Color.WHITE,
-                    Color.GREEN,
-                    Color.YELLOW
-            };
+                        int[] colors = new int[] {
+                                Color.WHITE,
+                                Color.WHITE,
+                                Color.GREEN,
+                                Color.YELLOW
+                        };
 
-            ColorStateList myList = new ColorStateList(states, colors);
+                        ColorStateList myList = new ColorStateList(states, colors);
 
-            navigationView.setItemTextColor(myList);
-            navigationView.setItemIconTintList(myList);
-        }
-        else{
-            getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                        navigationView.setItemTextColor(myList);
+                        navigationView.setItemIconTintList(myList);
+                    }
+                    else{
+                        getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                    }
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
+
         }
 
         if (count == 0){

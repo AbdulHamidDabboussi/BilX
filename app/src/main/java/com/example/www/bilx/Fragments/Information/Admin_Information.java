@@ -11,7 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.example.www.bilx.Fragments.Information.Admin_Info_FAQs.ApproveActivties_FAQ;
-import com.example.www.bilx.Fragments.Information.Admin_Info_FAQs.ApproveClubs_FAQ;
+import com.example.www.bilx.Fragments.Information.Admin_Info_FAQs.CreatePasscodes_FAQ;
 import com.example.www.bilx.R;
 
 /**
@@ -23,7 +23,7 @@ public class Admin_Information extends android.support.v4.app.Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState){
         View view = inflater.inflate(R.layout.admin_information, container, false);
-        String[] infoItems = {"Approve Activities", "Approve Clubs", "Notifications", "Settings"};
+        String[] infoItems = {"Approve Activities", "Create Passcodes", "Notifications", "Settings"};
         ListView listView = (ListView) view.findViewById(R.id.admin_list_info);
         ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle(R.string.Information);
 
@@ -41,7 +41,7 @@ public class Admin_Information extends android.support.v4.app.Fragment {
                 }
                 else if (index == 1){
                     getActivity().getSupportFragmentManager().beginTransaction()
-                            .replace(R.id.content_frame, new ApproveClubs_FAQ())
+                            .replace(R.id.content_frame, new CreatePasscodes_FAQ())
                             .addToBackStack(getClass().getName()).commit();
                 }
                 else if (index == 2){
