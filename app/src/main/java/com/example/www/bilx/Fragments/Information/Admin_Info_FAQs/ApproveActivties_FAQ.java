@@ -15,6 +15,6 @@ public class ApproveActivties_FAQ extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState){
         ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Approve Activities FAQs");
-        return inflater.inflate(R.layout.create_passcodes_faq, container, false);
+        return inflater.inflate(R.layout.approve_activities_faq, container, false);
     }
 }

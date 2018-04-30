@@ -62,9 +62,32 @@
 
     <string name="passcode_message" translatable="false">Create Passcodes to authenticate clubs \n and send them to club emails</string>
 
+    <string name="about_clubs"> The Clubs feature allows the users to go through a list of clubs in the university.\n \n  \n
+        Clicking on the club will allow users to view their description.\n \n \n \n \n \n \n</string>
 
+    <string name="user_activities_about"> The Activities feature allows the users to go through a list of club activities: .\n \n  \n
+        The Activities can be filtered to the users preferred filter.\n \n \n The Activities can be selected and have an alarm set for them.\n \n \n\n</string>
 
+    <string name="club_activities_about">The Activities feature for the clubs allows the clubs to create new Activities.\n \n  \n
+        Creating a new Activity will cause a notification to be sent to the University Admin.\n \n \n The Admin will decide if the Activity is to be Approved.\n \n \n
+        Filling in all the fields will allow the Admin to make a decision easily.\n</string>
 
+    <string name="club_profile_about">   The Profile feature for the clubs allows the clubs to Upload their club picture which will be displayed to the Admin and the Users.\n \n  \n
+        Clubs can add their name which will be seen by Users and the Admin.\n \n \n
+        Clubs can add their description which will be seen by Users and Admin.\n \n \n\n</string>
+    <string name="notifications_about">  The Notification feature allows the admin to send notifications to the users and the clubs.\n \n  \n
+        Notifications will be personalized by the admin.\n \n \n Notifications will be in the form of pop up messages in the notification pane.\n \n \n\n</string>
 
+    <string name="settings_about"> The Settings 3 features: .\n \n  \n The Dark Mode allows for a better user experience at night.\n \n \n
+        Changing of languages between English and Turkish.\n \n \n Requesting a change of password.\n</string>
+
+    <string name="approve_activities_about"> Approve activities is a feature solely for the admin.\n \n  \n
+        It allows the admin to view activities and choose to reject or approve activities.\n \n \n
+        The admin can also choose to hold the approval request.\n \n \n \n </string>
+
+    <string name="scheduler_about">   Smart Scheduler is a feature solely for the users.\n \n  \n It displays a calender.\n \n \n
+        Upon tapping a time slot the scheduler will show available activities. \n \n \n \n</string>
+    <string name="create_passcodes_faq">   Approve Clubs is a feature solely for the admin.\n \n  \n
+        It allows the admin to generate passcodes and send them to clubs to authenticate their sign-up.\n \n \n \n </string>
 
 </resources>

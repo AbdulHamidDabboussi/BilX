@@ -15,6 +15,6 @@ public class CreatePasscodes_FAQ extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState){
         ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Create Passcodes FAQs");
-        return inflater.inflate(R.layout.approve_clubs_faq, container, false);
+        return inflater.inflate(R.layout.create_passcodes_faq, container, false);
     }
 }

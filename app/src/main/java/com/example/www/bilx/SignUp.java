@@ -151,8 +151,8 @@ public class SignUp extends AppCompatActivity {
                                                         final EditText input = new EditText(SignUp.this);
                                                         input.setInputType(InputType.TYPE_CLASS_NUMBER);
                                                         input.setTextColor(Color.WHITE);
-                                                        builder.setView(input)
-                                                                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                                                        builder.setView(input);
+                                                        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                                                                     public void onClick(DialogInterface dialog, int which) {
                                                                         builder.setCancelable(true);
                                                                         FirebaseAuth.getInstance().getCurrentUser().delete();
@@ -194,10 +194,10 @@ public class SignUp extends AppCompatActivity {
                                                                                 mode.put("Bool","false");
                                                                                 databaseReference.setValue(mode);
 
-
                                                                                 Toast.makeText(SignUp.this, "Account Created", Toast.LENGTH_LONG).show();
                                                                                 Intent login = new Intent(SignUp.this, Login_Activity.class);
                                                                                 startActivity(login);
+                                                                                break;
                                                                             }
                                                                             else if (index == dataSnapshot.getChildrenCount() && !ds.getValue().toString().contains(s) ) {
                                                                                 FirebaseAuth.getInstance().getCurrentUser().delete();

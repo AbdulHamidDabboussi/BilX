@@ -32,6 +32,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.www.bilx.Fragments.User.NotificationsAdapter;
 import com.example.www.bilx.Fragments.User.SettingsFragment_User;
 import com.example.www.bilx.Fragments.User.Notifications_User;
 import com.example.www.bilx.Fragments.User.SavedActivities;
@@ -39,6 +40,7 @@ import com.example.www.bilx.Fragments.User.Scheduler;
 import com.example.www.bilx.Fragments.User.UserActivities;
 import com.example.www.bilx.Fragments.User.UserClubs;
 import com.example.www.bilx.Fragments.Information.User_Information;
+import com.example.www.bilx.Fragments.User.UserNotificationObject;
 import com.example.www.bilx.Login_Activity;
 import com.example.www.bilx.R;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -60,6 +62,8 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -109,7 +113,7 @@ public class User_Account extends AppCompatActivity
                                 reference.addListenerForSingleValueEvent(new ValueEventListener() {
                                     @Override
                                     public void onDataChange(DataSnapshot dataSnapshot) {
-                                        if (dataSnapshot.getValue().toString().contains("true")) {
+                                        if (dataSnapshot.getValue()!=null && dataSnapshot.getValue().toString().contains("true")) {
                                             if (ds2.toString().contains("Both")) {
                                                 NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(getApplicationContext())
                                                         .setSmallIcon(R.mipmap.ic_launcher)
@@ -119,6 +123,23 @@ public class User_Account extends AppCompatActivity
                                                         .setPriority(NotificationCompat.PRIORITY_DEFAULT);
                                                 Notification notification = mBuilder.build();
                                                 NotificationManagerCompat.from(getApplicationContext()).notify(0, notification);
+
+                                                //=================== For User Notifications ==================================================
+                                                String s = ds2.child("Message").getValue().toString().substring(ds2.child("Message").
+                                                        getValue().toString().indexOf('=') + 1, ds2.child("Message").getValue().toString().indexOf('}'));
+
+                                                DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Notification List")
+                                                        .child(FirebaseAuth.getInstance().getCurrentUser().getDisplayName()).child(s).child(s);
+
+                                                ref.setValue(s);
+
+
+                                                DatabaseReference ref2 = FirebaseDatabase.getInstance().getReference().child("Notification List")
+                                                        .child(FirebaseAuth.getInstance().getCurrentUser().getDisplayName()).child(s).child("Date");
+
+                                                ref2.setValue((new Date()).getTime());
+
+                                                // ===========================================================================================================================
 
                                                 DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Check Notify")
                                                         .child(FirebaseAuth.getInstance().getCurrentUser().getDisplayName()).child("Both");
@@ -143,7 +164,7 @@ public class User_Account extends AppCompatActivity
                                 reference.addListenerForSingleValueEvent(new ValueEventListener() {
                                     @Override
                                     public void onDataChange(DataSnapshot dataSnapshot) {
-                                        if (dataSnapshot.getValue().toString().contains("true")) {
+                                        if (dataSnapshot.getValue()!=null && dataSnapshot.getValue().toString().contains("true")) {
                                             if (ds2.toString().contains("Users")) {
                                                 NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(getApplicationContext())
                                                         .setSmallIcon(R.mipmap.ic_launcher)
@@ -152,7 +173,24 @@ public class User_Account extends AppCompatActivity
                                                                 getValue().toString().indexOf('=') + 1, ds2.child("Message").getValue().toString().indexOf('}')))
                                                         .setPriority(NotificationCompat.PRIORITY_DEFAULT);
                                                 Notification notification = mBuilder.build();
-                                                NotificationManagerCompat.from(getApplicationContext()).notify(1, notification);
+                                                NotificationManagerCompat.from(getApplicationContext()).notify((int)Math.random()+1000, notification);
+
+                                                //=================== For User Notifications ==================================================
+                                                String s = ds2.child("Message").getValue().toString().substring(ds2.child("Message").
+                                                        getValue().toString().indexOf('=') + 1, ds2.child("Message").getValue().toString().indexOf('}'));
+
+                                                DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Notification List")
+                                                        .child(FirebaseAuth.getInstance().getCurrentUser().getDisplayName()).child(s).child(s);
+
+                                                ref.setValue(s);
+
+
+                                                DatabaseReference ref2 = FirebaseDatabase.getInstance().getReference().child("Notification List")
+                                                        .child(FirebaseAuth.getInstance().getCurrentUser().getDisplayName()).child(s).child("Date");
+
+                                                ref2.setValue((new Date()).getTime());
+
+                                                // ===========================================================================================================================
 
                                                 DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Check Notify")
                                                         .child(FirebaseAuth.getInstance().getCurrentUser().getDisplayName()).child("Users");

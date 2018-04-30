@@ -8,19 +8,20 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-import android.widget.Toast;
 
 import com.example.www.bilx.R;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  *  The settings fragment for the admin class.
@@ -28,44 +29,70 @@ import java.util.List;
  */
 
 public class Notifications_User extends android.support.v4.app.Fragment {
-    private List<UserNotificationObject> movieList = new ArrayList<>();
+    public static  List<UserNotificationObject> notifyList = new ArrayList<>();
     private RecyclerView recyclerView;
     private NotificationsAdapter mAdapter;
-
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState){
-       View view = inflater.inflate(R.layout.notifications_user, container, false);
+       final View view = inflater.inflate(R.layout.notifications_user, container, false);
+
+
+        mAdapter = new NotificationsAdapter(notifyList);
         recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
 
-        mAdapter = new NotificationsAdapter(movieList);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity().getApplicationContext());
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(mAdapter);
+        notifyList = new ArrayList<>();
+        Timer timer = new Timer();
 
-        DatabaseReference userReference = FirebaseDatabase.getInstance().getReference().child("Notifications")
-                .child("Users").child("Message");
 
-
-        userReference.addListenerForSingleValueEvent(new ValueEventListener() {
+        TimerTask timerTask = new TimerTask() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                String s = dataSnapshot.getValue().toString().substring(dataSnapshot.getValue().toString().indexOf("=")+1
-                ,dataSnapshot.getValue().toString().indexOf("}"));
-                addItem(new UserNotificationObject("0","1","2"));
-            }
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
+            public void run() {
+                try {
+                     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference()
+                            .child("Notification List").child(FirebaseAuth.getInstance().getCurrentUser().getDisplayName());
+                    Query q = databaseReference.orderByChild("Date");
+
+
+                    q.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange( DataSnapshot shot) {
+                            notifyList = new ArrayList<>();
+                            for( DataSnapshot ds: shot.getChildren()){
+                                String s = ds.getValue().toString();
+                                String val = s.substring(s.indexOf(',')+1,s.lastIndexOf('=')).trim();
+                                if (!val.equals("Date")){
+                                    addItem(new UserNotificationObject("Administrator Notification",val,""));
+                                }
+                                else{
+                                    val = s.substring(s.indexOf('{')+1,s.indexOf('=')).trim();
+                                    addItem(new UserNotificationObject("Administrator Notification",val,""));
+                                }
+                            }
+                        }
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+                        }
+                    });
+                } catch (NullPointerException e){
+                    // do something
+                }
 
             }
-        });
+        };
+        timer.scheduleAtFixedRate(timerTask, 0, 2*1000);
+
+
         return view;
     }
 
-    public void addItem(final UserNotificationObject newItem) {
-        movieList.add(newItem);
+    public void addItem(UserNotificationObject newItem) {
+        notifyList.add(0,newItem);
         mAdapter.notifyDataSetChanged();
 
     }
