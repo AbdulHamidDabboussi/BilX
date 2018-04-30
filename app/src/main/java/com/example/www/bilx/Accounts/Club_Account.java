@@ -46,6 +46,7 @@ import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
 import java.io.ByteArrayOutputStream;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Timer;
@@ -95,7 +96,7 @@ public class Club_Account extends AppCompatActivity
                                 reference.addListenerForSingleValueEvent(new ValueEventListener() {
                                     @Override
                                     public void onDataChange(DataSnapshot dataSnapshot) {
-                                        if (dataSnapshot.getValue().toString().contains("true")) {
+                                        if (dataSnapshot.getValue() != null && dataSnapshot.getValue().toString().contains("true")) {
                                             if (ds2.toString().contains("Both")) {
                                                 NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(getApplicationContext())
                                                         .setSmallIcon(R.mipmap.ic_launcher)
@@ -105,6 +106,25 @@ public class Club_Account extends AppCompatActivity
                                                         .setPriority(NotificationCompat.PRIORITY_DEFAULT);
                                                 Notification notification = mBuilder.build();
                                                 NotificationManagerCompat.from(getApplicationContext()).notify(0, notification);
+
+                                                //=================== For User Notifications ==================================================
+                                                DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Notification List")
+                                                        .child(FirebaseAuth.getInstance().getCurrentUser().getDisplayName()).child(ds2.child("Message").getValue().toString().substring(ds2.child("Message").
+                                                                getValue().toString().indexOf('=') + 1, ds2.child("Message").getValue().toString().indexOf('}'))).child(ds2.child("Message").getValue().toString().substring(ds2.child("Message").
+                                                                getValue().toString().indexOf('=') + 1, ds2.child("Message").getValue().toString().indexOf('}')));
+
+                                                ref.setValue(ds2.child("Message").getValue().toString().substring(ds2.child("Message").
+                                                        getValue().toString().indexOf('=') + 1, ds2.child("Message").getValue().toString().indexOf('}')));
+
+
+                                                DatabaseReference ref2 = FirebaseDatabase.getInstance().getReference().child("Notification List")
+                                                        .child(FirebaseAuth.getInstance().getCurrentUser().getDisplayName()).child(ds2.child("Message").getValue().toString().substring(ds2.child("Message").
+                                                                getValue().toString().indexOf('=') + 1, ds2.child("Message").getValue().toString().indexOf('}'))).child("Date");
+
+                                                ref2.setValue((new Date()).getTime());
+
+                                                // ===========================================================================================================================
+
 
                                                 DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Check Notify")
                                                         .child(FirebaseAuth.getInstance().getCurrentUser().getDisplayName()).child("Both");
@@ -130,7 +150,7 @@ public class Club_Account extends AppCompatActivity
                                 reference.addListenerForSingleValueEvent(new ValueEventListener() {
                                     @Override
                                     public void onDataChange(DataSnapshot dataSnapshot) {
-                                        if (dataSnapshot.getValue().toString().contains("true")) {
+                                        if (dataSnapshot.getValue() != null && dataSnapshot.getValue().toString().contains("true")) {
                                             if (ds2.toString().contains("Clubs")) {
                                                 NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(getApplicationContext())
                                                         .setSmallIcon(R.mipmap.ic_launcher)
@@ -140,6 +160,29 @@ public class Club_Account extends AppCompatActivity
                                                         .setPriority(NotificationCompat.PRIORITY_DEFAULT);
                                                 Notification notification = mBuilder.build();
                                                 NotificationManagerCompat.from(getApplicationContext()).notify(1, notification);
+
+                                                //=================== For User Notifications ==================================================
+                                                try {
+                                                    String s =ds2.child("Message").getValue().toString().substring(ds2.child("Message").
+                                                            getValue().toString().indexOf('=') + 1, ds2.child("Message").getValue().toString().indexOf('}'));
+
+                                                    DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Notification List")
+                                                            .child(FirebaseAuth.getInstance().getCurrentUser().getDisplayName()).child(s).child(s);
+
+                                                    ref.setValue(s);
+
+
+                                                    DatabaseReference ref2 = FirebaseDatabase.getInstance().getReference().child("Notification List")
+                                                            .child(FirebaseAuth.getInstance().getCurrentUser().getDisplayName()).child(s).child("Date");
+
+                                                    ref2.setValue((new Date()).getTime());
+                                                }catch (Exception e){
+                                                    // do something
+                                                }
+
+                                                // ===========================================================================================================================
+
+
 
                                                 DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Check Notify")
                                                         .child(FirebaseAuth.getInstance().getCurrentUser().getDisplayName()).child("Clubs");
@@ -195,44 +238,47 @@ public class Club_Account extends AppCompatActivity
 
         // Change theme to dark
         settingsFragmentClub = new SettingsFragment_club();
-        if (FirebaseAuth.getInstance().getCurrentUser().getDisplayName() != null){
-            DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Dark Mode").
-                    child(FirebaseAuth.getInstance().getCurrentUser().getDisplayName());
-            databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-                    if (dataSnapshot.getValue().toString().contains("true")){
-                        getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-                        int[][] states = new int[][] {
-                                new int[] { android.R.attr.state_enabled}, // enabled
-                                new int[] {-android.R.attr.state_enabled}, // disabled
-                                new int[] {-android.R.attr.state_checked}, // unchecked
-                                new int[] { android.R.attr.state_pressed}  // pressed
-                        };
+        try {
+            if (FirebaseAuth.getInstance().getCurrentUser().getDisplayName() != null) {
+                DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Dark Mode").
+                        child(FirebaseAuth.getInstance().getCurrentUser().getDisplayName());
+                databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        if (dataSnapshot.getValue() != null && dataSnapshot.getValue().toString().contains("true")) {
+                            getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                            int[][] states = new int[][]{
+                                    new int[]{android.R.attr.state_enabled}, // enabled
+                                    new int[]{-android.R.attr.state_enabled}, // disabled
+                                    new int[]{-android.R.attr.state_checked}, // unchecked
+                                    new int[]{android.R.attr.state_pressed}  // pressed
+                            };
 
-                        int[] colors = new int[] {
-                                Color.WHITE,
-                                Color.WHITE,
-                                Color.GREEN,
-                                Color.YELLOW
-                        };
+                            int[] colors = new int[]{
+                                    Color.WHITE,
+                                    Color.WHITE,
+                                    Color.GREEN,
+                                    Color.YELLOW
+                            };
 
-                        ColorStateList myList = new ColorStateList(states, colors);
+                            ColorStateList myList = new ColorStateList(states, colors);
 
-                        navigationView.setItemTextColor(myList);
-                        navigationView.setItemIconTintList(myList);
+                            navigationView.setItemTextColor(myList);
+                            navigationView.setItemIconTintList(myList);
+                        } else {
+                            getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                        }
                     }
-                    else{
-                        getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
                     }
-                }
+                });
 
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
-
-                }
-            });
-
+            }
+        }catch (NullPointerException e){
+            // do something
         }
 
 

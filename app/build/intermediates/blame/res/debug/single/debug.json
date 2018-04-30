@@ -424,6 +424,10 @@
         "source": "C:\\Users\\Hanzallah Burney\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\12ea999a007989de88de33bbca02ca1c\\res\\drawable-hdpi-v4\\abc_ic_menu_selectall_mtrl_alpha.png"
     },
     {
+        "merged": "C:\\Users\\Hanzallah Burney\\Desktop\\Projects\\Android\\BILX\\app\\build\\intermediates\\res\\merged\\debug\\layout_notification_club_list.xml.flat",
+        "source": "C:\\Users\\Hanzallah Burney\\Desktop\\Projects\\Android\\BILX\\app\\src\\main\\res\\layout\\notification_club_list.xml"
+    },
+    {
         "merged": "C:\\Users\\Hanzallah Burney\\Desktop\\Projects\\Android\\BILX\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_ic_action_filter.png.flat",
         "source": "C:\\Users\\Hanzallah Burney\\Desktop\\Projects\\Android\\BILX\\app\\src\\main\\res\\drawable-hdpi\\ic_action_filter.png"
     },
@@ -650,6 +654,10 @@
     {
         "merged": "C:\\Users\\Hanzallah Burney\\Desktop\\Projects\\Android\\BILX\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxxhdpi_bg.png.flat",
         "source": "C:\\Users\\Hanzallah Burney\\Desktop\\Projects\\Android\\BILX\\app\\src\\main\\res\\mipmap-xxxhdpi\\bg.png"
+    },
+    {
+        "merged": "C:\\Users\\Hanzallah Burney\\Desktop\\Projects\\Android\\BILX\\app\\build\\intermediates\\res\\merged\\debug\\layout_approve_activities_faq.xml.flat",
+        "source": "C:\\Users\\Hanzallah Burney\\Desktop\\Projects\\Android\\BILX\\app\\src\\main\\res\\layout\\approve_activities_faq.xml"
     },
     {
         "merged": "C:\\Users\\Hanzallah Burney\\Desktop\\Projects\\Android\\BILX\\app\\build\\intermediates\\res\\merged\\debug\\layout_notification_template_lines_media.xml.flat",
@@ -1254,10 +1262,6 @@
     {
         "merged": "C:\\Users\\Hanzallah Burney\\Desktop\\Projects\\Android\\BILX\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_abc_ic_menu_paste_mtrl_am_alpha.png.flat",
         "source": "C:\\Users\\Hanzallah Burney\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\12ea999a007989de88de33bbca02ca1c\\res\\drawable-xhdpi-v4\\abc_ic_menu_paste_mtrl_am_alpha.png"
-    },
-    {
-        "merged": "C:\\Users\\Hanzallah Burney\\Desktop\\Projects\\Android\\BILX\\app\\build\\intermediates\\res\\merged\\debug\\layout_approve_clubs_faq.xml.flat",
-        "source": "C:\\Users\\Hanzallah Burney\\Desktop\\Projects\\Android\\BILX\\app\\src\\main\\res\\layout\\approve_clubs_faq.xml"
     },
     {
         "merged": "C:\\Users\\Hanzallah Burney\\Desktop\\Projects\\Android\\BILX\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_ic_action_savedactivities.png.flat",
@@ -2298,6 +2302,10 @@
     {
         "merged": "C:\\Users\\Hanzallah Burney\\Desktop\\Projects\\Android\\BILX\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_abc_btn_check_to_on_mtrl_015.png.flat",
         "source": "C:\\Users\\Hanzallah Burney\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\12ea999a007989de88de33bbca02ca1c\\res\\drawable-xhdpi-v4\\abc_btn_check_to_on_mtrl_015.png"
+    },
+    {
+        "merged": "C:\\Users\\Hanzallah Burney\\Desktop\\Projects\\Android\\BILX\\app\\build\\intermediates\\res\\merged\\debug\\layout_user_club_list.xml.flat",
+        "source": "C:\\Users\\Hanzallah Burney\\Desktop\\Projects\\Android\\BILX\\app\\src\\main\\res\\layout\\user_club_list.xml"
     },
     {
         "merged": "C:\\Users\\Hanzallah Burney\\Desktop\\Projects\\Android\\BILX\\app\\build\\intermediates\\res\\merged\\debug\\layout_notifications_faq.xml.flat",

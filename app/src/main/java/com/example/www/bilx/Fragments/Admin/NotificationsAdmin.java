@@ -90,23 +90,38 @@ public class NotificationsAdmin extends android.support.v4.app.Fragment {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
                             for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                                String name = ds.toString().substring(ds.toString().indexOf('=') + 1
+                                final String name = ds.toString().substring(ds.toString().indexOf('=') + 1
                                         , ds.toString().indexOf(',')).trim();
 
-                                DatabaseReference dat = FirebaseDatabase.getInstance().getReference()
-                                        .child("Check Notify").child(name).child("Users");
-                                Map check = new HashMap();
-                                check.put("Bool", "true");
-                                dat.setValue(check);
+
+                                DatabaseReference check = FirebaseDatabase.getInstance().getReference()
+                                        .child("Users").child(name);
+                                check.addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(DataSnapshot dataSnapshot) {
+                                        if (!dataSnapshot.toString().contains("club")) {
+                                            DatabaseReference dat = FirebaseDatabase.getInstance().getReference()
+                                                    .child("Check Notify").child(name).child("Users");
+
+                                            Map check = new HashMap();
+                                            check.put("Bool", "true");
+                                            dat.setValue(check);
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onCancelled(DatabaseError databaseError) {
+
+                                    }
+
+                                });
                             }
                         }
-
                         @Override
                         public void onCancelled(DatabaseError databaseError) {
 
                         }
                     });
-
                 }
                 else if (admin_spinner.getSelectedItem().toString().equals("Clubs")){
                     DatabaseReference current_user = FirebaseDatabase.getInstance().getReference()
@@ -120,14 +135,34 @@ public class NotificationsAdmin extends android.support.v4.app.Fragment {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
                             for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                                String name = ds.toString().substring(ds.toString().indexOf('=') + 1
+                                final String name = ds.toString().substring(ds.toString().indexOf('=') + 1
                                         , ds.toString().indexOf(',')).trim();
 
-                                DatabaseReference dat = FirebaseDatabase.getInstance().getReference()
-                                        .child("Check Notify").child(name).child("Clubs");
-                                Map check = new HashMap();
-                                check.put("Bool", "true");
-                                dat.setValue(check);
+
+
+                                DatabaseReference check = FirebaseDatabase.getInstance().getReference()
+                                        .child("Users").child(name);
+                                check.addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(DataSnapshot dataSnapshot) {
+                                        if (dataSnapshot.toString().contains("club")){
+                                            DatabaseReference dat = FirebaseDatabase.getInstance().getReference()
+                                                    .child("Check Notify").child(name).child("Clubs");
+
+                                            Map check = new HashMap();
+                                            check.put("Bool", "true");
+                                            dat.setValue(check);
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onCancelled(DatabaseError databaseError) {
+
+                                    }
+                                });
+
+
+
                             }
                         }
 
