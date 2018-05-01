@@ -122,6 +122,7 @@ public class NotificationsAdmin extends android.support.v4.app.Fragment {
 
                         }
                     });
+                    Toast.makeText(getActivity(),"Notification Sent", Toast.LENGTH_LONG).show();
                 }
                 else if (admin_spinner.getSelectedItem().toString().equals("Clubs")){
                     DatabaseReference current_user = FirebaseDatabase.getInstance().getReference()
@@ -172,7 +173,7 @@ public class NotificationsAdmin extends android.support.v4.app.Fragment {
                         }
                     });
 
-
+                    Toast.makeText(getActivity(),"Notification Sent", Toast.LENGTH_LONG).show();
 
                 }
                 else{
@@ -203,10 +204,13 @@ public class NotificationsAdmin extends android.support.v4.app.Fragment {
 
                             }
                         });
+                    Toast.makeText(getActivity(),"Notification Sent", Toast.LENGTH_LONG).show();
+
                 }
                 NotificationManagerCompat.from(getActivity()).notify(0,notification);
             }
         });
+
         return view;
     }
 }

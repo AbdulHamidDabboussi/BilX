@@ -51,4 +51,8 @@ public class ClubNotificationsAdapter extends RecyclerView.Adapter<ClubNotificat
     public int getItemCount() {
         return list.size();
     }
+
+    public void removeAdapter(int i) {
+        list.remove(i);
+    }
 }

@@ -19,7 +19,7 @@
     <string name="filter_time" translatable="false">Time</string>
     <string name="filter_location" translatable="false">Location</string>
     <string name="filter_gepoints" translatable="false">GE Points</string>
-    <string name="filter_fees" translatable="false">Fees</string>
+    <string name="filter_lang" translatable="false">Language</string>
     <string name="filter_date" translatable="false">Date</string>
 
     <string name="nav_header_title" translatable="false">Android Studio</string>
@@ -39,6 +39,7 @@
     <string name="mode" translatable="false">Dark Mode</string>
     <string name="language" translatable="false">Switch Language</string>
     <string name="changepw" translatable="false">Reset Password</string>
+    <string name="report_bugs" translatable="false">Report Bugs</string>
     <string name="changeprofilepic" translatable="false">Change Profile Picture</string>
     <string name="title_activity_settings" translatable="false">Settings</string>
 

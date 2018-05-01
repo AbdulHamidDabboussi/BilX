@@ -108,18 +108,16 @@ public class Club_Account extends AppCompatActivity
                                                 NotificationManagerCompat.from(getApplicationContext()).notify(0, notification);
 
                                                 //=================== For User Notifications ==================================================
+                                                String s = ds2.child("Message").getValue().toString().substring(ds2.child("Message").
+                                                        getValue().toString().indexOf('=') + 1, ds2.child("Message").getValue().toString().indexOf('}'));
                                                 DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Notification List")
-                                                        .child(FirebaseAuth.getInstance().getCurrentUser().getDisplayName()).child(ds2.child("Message").getValue().toString().substring(ds2.child("Message").
-                                                                getValue().toString().indexOf('=') + 1, ds2.child("Message").getValue().toString().indexOf('}'))).child(ds2.child("Message").getValue().toString().substring(ds2.child("Message").
-                                                                getValue().toString().indexOf('=') + 1, ds2.child("Message").getValue().toString().indexOf('}')));
+                                                        .child(FirebaseAuth.getInstance().getCurrentUser().getDisplayName()).child(s).child(s);
 
-                                                ref.setValue(ds2.child("Message").getValue().toString().substring(ds2.child("Message").
-                                                        getValue().toString().indexOf('=') + 1, ds2.child("Message").getValue().toString().indexOf('}')));
+                                                ref.setValue(s);
 
 
                                                 DatabaseReference ref2 = FirebaseDatabase.getInstance().getReference().child("Notification List")
-                                                        .child(FirebaseAuth.getInstance().getCurrentUser().getDisplayName()).child(ds2.child("Message").getValue().toString().substring(ds2.child("Message").
-                                                                getValue().toString().indexOf('=') + 1, ds2.child("Message").getValue().toString().indexOf('}'))).child("Date");
+                                                        .child(FirebaseAuth.getInstance().getCurrentUser().getDisplayName()).child(s).child("Date");
 
                                                 ref2.setValue((new Date()).getTime());
 

@@ -1,7 +1,9 @@
 package com.example.www.bilx.Fragments.Admin;
 
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatDelegate;
@@ -35,6 +37,8 @@ public class SettingsFragment_admin extends PreferenceFragmentCompat {
     private SwitchPreferenceCompat darkMode;
     private Preference resetPassword;
     private ListPreference language;
+    private Preference reportBugs;
+
 
     @Override
     public void onCreatePreferences(Bundle bundle, String s) {
@@ -43,6 +47,8 @@ public class SettingsFragment_admin extends PreferenceFragmentCompat {
         darkMode = (SwitchPreferenceCompat) findPreference("theme_mode");
         resetPassword = (Preference) findPreference("password_reset");
         language = (ListPreference) findPreference("admin_languages");
+        reportBugs = (Preference) findPreference("admin_report_bug");
+
 
         // Implementation of dark mode
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Dark Mode")
@@ -85,6 +91,21 @@ public class SettingsFragment_admin extends PreferenceFragmentCompat {
                     Admin_Account.count++;
                     getActivity().recreate();
                 }
+                return true;
+            }
+        });
+
+        // Report Bugs
+        reportBugs.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            public boolean onPreferenceClick(Preference preference) {
+
+                Intent intent = new Intent(Intent.ACTION_SENDTO); // it's not ACTION_SEND
+                intent.setType("message/rfc822");
+                intent.putExtra(Intent.EXTRA_SUBJECT, "BILX Bug Report");
+                intent.setData(Uri.fromParts("mailto",
+                        "azim.burney@ug.bilkent.edu.tr", null)); // or just "mailto:" for blank
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK); // this will make such that when user returns to your app, your app is displayed, instead of the email app.
+                startActivity(intent);
                 return true;
             }
         });

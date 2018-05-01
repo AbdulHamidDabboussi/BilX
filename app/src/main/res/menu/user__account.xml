@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/filter">
     <item
         android:id="@+id/action_test"
         android:icon="@drawable/ic_action_filter"
+        android:visible="true"
         android:orderInCategory="1"
         app:showAsAction="always"
         android:title="">
@@ -28,9 +31,9 @@
                 android:title="@string/filter_location"
                 app:showAsAction="never" />
             <item
-                android:id="@+id/action_fees"
+                android:id="@+id/action_language"
                 android:orderInCategory="100"
-                android:title="@string/filter_fees"
+                android:title="@string/filter_lang"
                 app:showAsAction="never" />
             <item
                 android:id="@+id/action_gepoints"

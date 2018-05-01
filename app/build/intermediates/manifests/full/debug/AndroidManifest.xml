@@ -58,15 +58,18 @@
         <activity
             android:name="com.example.www.bilx.Accounts.User_Account"
             android:label="@string/title_activity_user__account"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustNothing" />
         <activity
             android:name="com.example.www.bilx.Accounts.Admin_Account"
             android:label="@string/title_activity_admin__account"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustNothing" />
         <activity
             android:name="com.example.www.bilx.Accounts.Club_Account"
             android:label="@string/title_activity_club__account"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustNothing" />
 
         <service android:name="com.example.www.bilx.MyFirebaseMessagingService" >
             <intent-filter>

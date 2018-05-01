@@ -22,6 +22,10 @@
             android:key="password_reset"
             android:summary="Set a new password"
             android:title="@string/changepw"/>
+        <Preference
+            android:key="user_report_bug"
+            android:summary="Report Bugs"
+            android:title="@string/report_bugs"/>
 
 
     </android.support.v7.preference.PreferenceCategory>

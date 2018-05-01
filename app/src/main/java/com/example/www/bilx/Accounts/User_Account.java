@@ -3,6 +3,7 @@ package com.example.www.bilx.Accounts;
 import android.app.Activity;
 import android.app.Notification;
 import android.content.ActivityNotFoundException;
+import android.content.ClipData;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.database.Cursor;
@@ -313,8 +314,7 @@ public class User_Account extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.user__account, menu);
-
+        //getMenuInflater().inflate(R.menu.user__account, menu);
 
         // Set email in navigation drawer to user's email
         firebaseAuth = FirebaseAuth.getInstance();

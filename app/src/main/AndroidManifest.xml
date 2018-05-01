@@ -39,15 +39,18 @@
 
         <activity
             android:name=".Accounts.User_Account"
+            android:windowSoftInputMode="adjustNothing"
             android:label="@string/title_activity_user__account"
             android:theme="@style/AppTheme" />
         <activity
             android:name=".Accounts.Admin_Account"
+            android:windowSoftInputMode="adjustNothing"
             android:label="@string/title_activity_admin__account"
             android:theme="@style/AppTheme" />
         <activity
             android:name=".Accounts.Club_Account"
             android:label="@string/title_activity_club__account"
+            android:windowSoftInputMode="adjustNothing"
             android:theme="@style/AppTheme" />
 
         <service

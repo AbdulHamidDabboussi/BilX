@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:fillViewport="true">
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:scrollbars="vertical"
+    >
+
+    <TextView
+        android:id="@+id/createClubActivitiesMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:fontFamily="@font/roboto_medium"
+        android:text="///////create_club_activities_message"
+        android:textSize="16dp" />
+
+
+    <EditText
+        android:id="@+id/actName"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/time"
+        android:layout_marginTop="68dp"
+        android:ems="10"
+        android:fontFamily="@font/roboto_light"
+        android:hint="Activity Name"
+        android:inputType="text"
+        android:textSize="15dp" />
+
+    <EditText
+        android:id="@+id/gePoints"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/createClubActivitiesMessage"
+        android:layout_below="@+id/actName"
+        android:ems="10"
+        android:fontFamily="@font/roboto_light"
+        android:hint="GE Points (Enter 0 if none)"
+        android:inputType="numberSigned"
+        android:textSize="15dp" />
+
+
+    <TextView
+        android:id="@+id/location_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/loc"
+        android:layout_alignStart="@+id/time_message"
+        android:text="Location:" />
+
+    <TextView
+        android:id="@+id/language_message2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/time_message"
+        android:layout_alignTop="@+id/lang_spinner"
+        android:text="Language:" />
+
+    <TextView
+        android:id="@+id/date_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/date"
+        android:layout_alignStart="@+id/actName_mesage"
+        android:text="Date:" />
+
+    <TextView
+        android:id="@+id/time_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/time"
+        android:layout_alignStart="@+id/actName_mesage"
+        android:text="Time:" />
+
+    <TextView
+        android:id="@+id/ge_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/gePoints"
+        android:layout_alignStart="@+id/actName_mesage"
+        android:text="GE Points:" />
+
+    <TextView
+        android:id="@+id/actName_mesage"
+        android:layout_width="wrap_content"
+        android:layout_height="31dp"
+        android:layout_alignBottom="@+id/actName"
+        android:layout_toStartOf="@+id/actName"
+        android:text="Activity Name:" />
+
+    <EditText
+        android:id="@+id/time"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/createClubActivitiesMessage"
+        android:layout_below="@+id/gePoints"
+        android:ems="10"
+        android:fontFamily="@font/roboto_light"
+        android:hint="hh:mm (24 hour clock)"
+        android:inputType="time"
+        android:textSize="15dp" />
+
+    <EditText
+        android:id="@+id/date"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/createClubActivitiesMessage"
+        android:layout_below="@+id/time"
+        android:ems="10"
+        android:fontFamily="@font/roboto_light"
+        android:hint="dd/mm/yy"
+        android:inputType="date"
+        android:textSize="15dp" />
+
+    <EditText
+        android:id="@+id/actDescription"
+        android:layout_width="301dp"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/location_message"
+        android:layout_below="@+id/actDesc_message"
+        android:ems="10"
+        android:inputType="textMultiLine" />
+
+    <TextView
+        android:id="@+id/actDesc_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/location_message"
+        android:layout_below="@+id/lang_spinner"
+        android:paddingTop="20dp"
+        android:text="Activity Description" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/createAct_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="30dp"
+        android:layout_marginEnd="30dp"
+        android:paddingBottom="30dp"
+        android:paddingRight="30dp"
+        android:clickable="true"
+        app:backgroundTint="@color/colorPrimaryDark"
+        app:elevation="10dp"
+        app:fabSize="normal"
+        app:srcCompat="@android:drawable/ic_menu_send" />
+
+    <Spinner
+        android:id="@+id/lang_spinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/loc"
+        android:layout_centerHorizontal="true"
+        android:drawSelectorOnTop="true"
+        android:entries="@array/languages_offered" />
+
+    <EditText
+        android:id="@+id/loc"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/createClubActivitiesMessage"
+        android:layout_below="@+id/date"
+        android:ems="10"
+        android:fontFamily="@font/roboto_light"
+        android:hint="Location"
+        android:inputType="text"
+        android:textSize="15dp" />
+
+
+</RelativeLayout>
+</ScrollView>

@@ -1,152 +1,82 @@
 package com.example.www.bilx.Logic;
 
+import android.graphics.Color;
+
+import com.alamkanak.myweekview.WeekViewEvent;
+
 import java.util.Calendar;
 
-/**
- * Activity class
- * @author Gledis & Perman
- * @version 20/04/2018
- */
+public class Activity {
+    private String title, club, time, date,location;
+    private int gePoints, language;
+    private WeekViewEvent wve;
 
-public class Activity
-{
-    // constants
-    final static int CONFERENCE = 0;
-    final static int SCREENING = 1;
-    final static int SEMINAR = 2;
-    final static int SOCIAL = 3;
-    final static int SPORTS = 4;
-    final static int TRIP = 5;
-    final static int WORKSHOP = 6;
-    final static int OTHER = 7;
+    public Activity(String title, String club, String time, String date, String location, int gePoints, int language) {
+        this.title = title;
+        this.club = club;
+        this.gePoints = gePoints;
+        this.time = time;
+        this.date = date;
+        this.location = location;
+        this.language = language;
 
-    final static int BOTH = 0;
-    final static int TUR = 1;
-    final static int ENG = 2;
+        Calendar startTime = Calendar.getInstance();
+        startTime.set( Integer.parseInt(date.substring(6, 10)), Integer.parseInt(date.substring(3, 5)) - 1,
+               Integer.parseInt(date.substring(0,2)), Integer.parseInt(time.substring(0,2)), 0);
+        Calendar endTime = (Calendar)startTime.clone();
+        endTime.add(Calendar.HOUR_OF_DAY, 1);
+        //endTime.set(Calendar.MONTH, 4);
 
-    final static int STATUS_PENDING = 0;
-    final static int STATUS_APPROVED = 1;
-    final static int STATUS_REJECTED = 2;
+//        Calendar startTime = Calendar.getInstance();
+//        startTime.set(Calendar.HOUR_OF_DAY, 3);
+//        startTime.set(Calendar.MINUTE, 0);
+//        startTime.set(Calendar.MONTH, 4);
+//        startTime.set(Calendar.YEAR, 2018);
+//        Calendar endTime = (Calendar) startTime.clone();
+//        endTime.add(Calendar.HOUR, 1);
+//        endTime.set(Calendar.MONTH, 4);
 
-    // properties
-    String name;
-    String club;
-    String location;
-    String description;
+        wve = new WeekViewEvent( 1, this.title, startTime, endTime );
+        wve.setColor( Color.parseColor("#01579B"));
 
-    int lang;
-    int category;
-    int gePoints;
-    int pt;           // Participation Tracker
-    int status;       // Whether the activity is active,rejected, or awating confirmation.
-
-    Calendar time;
-
-    boolean onCampus;
-    boolean saved;
-    boolean limited;
-    boolean expired;
-    boolean isNew;
-
-    // Alarm
-
-    // constructor
-    public Activity()
-    {
-        pt = 0;
-        saved = false;
-        expired = false;
-        isNew = true;
-        status = STATUS_PENDING;
     }
 
-    // methods
-    // print... type methods diplay data in a user friendly way
-
-    // prints name of activity
-    public String printName(){ return name;}
-
-    // prints location
-    public String printLocation(){ return location;}
-
-    // prints description
-    public String printDescription(){ return description;}
-
-    // prints GE points
-    public String printGEPoints(){ return "" + gePoints;}
-
-    // prints the Participation Tracker of the activity
-    public String printPT(){ return "" + pt;}
-
-    // prints the hours and minutes only
-    public String printTime()
-    {
-        String hour = "" + time.get( Calendar.HOUR_OF_DAY);
-        String minute = "" + time.get( Calendar.MINUTE);
-
-        // making sure the format is hh:mm
-        if( hour.length() == 1)
-            hour = "0" + hour;
-        if( minute.length() == 1)
-            minute = "0" + minute;
-
-        return  hour + ":" + minute;
+    public WeekViewEvent getWve(){
+        return this.wve;
     }
 
-    // prints the day,month, and year
-    public String printDate()
-    {
-        String day = "" + time.get( Calendar.DAY_OF_MONTH);
-        String month = "" + time.get( Calendar.MONTH);
-        String year = "" + time.get( Calendar.YEAR);
-
-        // making sure the format is dd/mm/yyyy
-        if( day.length() == 1)
-            day = "0" + day;
-        if( month.length() == 1)
-            month = "0" + month;
-
-        return day + "/" + month + "/" + year;
+    public String getClub() {
+        return club;
     }
 
-    // prints the language
-    public String printLang()
-    {
-        if( lang == BOTH)
-            return "Both";
-        else if( lang == TUR)
-            return "Tur";
-        else
-            return "Eng";
+    public int getGePoints() {
+        return gePoints;
     }
 
-    // prints the category
-    public String printCategory()
-    {
-        if( category == CONFERENCE)
-            return "Conference";
-        else if( category == SCREENING)
-            return "Screening";
-        else if( category == SEMINAR)
-            return "Seminar";
-        else if( category == SOCIAL)
-            return "Social";
-        else if( category == SPORTS)
-            return "Sport";
-        else if( category == TRIP)
-            return "Trip";
-        else if( category == WORKSHOP)
-            return "Workshop";
-        else
-            return "Other";
+    public String getTime() {
+        return time;
     }
 
-    // prints whether the activity is happening on campus or not
-    public String printOnCampusStatus()
-    {
-        if( onCampus)
-            return "On Campus";
-        else
-            return "Off Campus";
+    public String getLocation() {
+        return location;
     }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public int getLanguage(){
+        return language;
+    }
+
+    public String getLocationString(){
+       return location;
+    }
+
+    public String getLanguageString(){
+        if ( getLanguage() == 1)
+            return "English";
+        return "Turkish";
+    }
+
 }
