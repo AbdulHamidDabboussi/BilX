@@ -14,6 +14,7 @@ import com.example.www.bilx.R;
  *  The settings fragment for the admin class.
  *  @author Hanzallah Burney
  */
+
 public class UserActivities extends android.support.v4.app.Fragment {
     @Nullable
     @Override
@@ -27,5 +28,4 @@ public class UserActivities extends android.support.v4.app.Fragment {
         getActivity().getMenuInflater().inflate(R.menu.user__account,menu );
         super.onCreateOptionsMenu(menu, inflater);
     }
-
 }

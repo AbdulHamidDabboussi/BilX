@@ -74,6 +74,7 @@ public class Notifications_Clubs extends android.support.v4.app.Fragment {
                             clubNotifyList = new ArrayList<>();
                             for (DataSnapshot ds : shot.getChildren()) {
                                 String s = ds.getValue().toString();
+                                s = s.replace("_",".");
                                 String val = s.substring(s.indexOf(',') + 1, s.lastIndexOf('=')).trim();
                                 if (!val.equals("Date")) {
                                     addItem(new ClubNotificationObject("Administrator Notification", val, ""));
@@ -115,6 +116,7 @@ public class Notifications_Clubs extends android.support.v4.app.Fragment {
             public void onSwiped(final RecyclerView.ViewHolder viewHolder, int direction) {
                 ClubNotificationObject clubNotificationObject = clubNotifyList.get(viewHolder.getAdapterPosition());
                 String subject = clubNotificationObject.getSubject();
+                subject = subject.replace(".","_");
                 clubNotifyList.remove(viewHolder.getAdapterPosition());
                 adapter.removeAdapter(viewHolder.getAdapterPosition());
                 adapter.notifyItemRemoved(viewHolder.getAdapterPosition());

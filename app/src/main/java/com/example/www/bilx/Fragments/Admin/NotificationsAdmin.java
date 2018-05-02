@@ -65,6 +65,7 @@ public class NotificationsAdmin extends android.support.v4.app.Fragment {
             @Override
             public void onClick(View view) {
                 String s = notify_text.getText().toString();
+                s = s.replace(".","_");
                 NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(getActivity())
                         .setSmallIcon(R.mipmap.ic_launcher)
                         .setContentTitle("Bilkent Notification")

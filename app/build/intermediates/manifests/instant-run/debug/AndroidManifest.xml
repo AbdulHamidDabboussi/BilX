@@ -35,7 +35,9 @@
         android:theme="@style/AppTheme" >
 
         <!-- Main Activity -->
-        <activity android:name="com.example.www.bilx.SplashScreen" >
+        <activity
+            android:name="com.example.www.bilx.SplashScreen"
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -44,10 +46,14 @@
         </activity>
 
         <!-- Login Activity -->
-        <activity android:name="com.example.www.bilx.Login_Activity" />
+        <activity
+            android:name="com.example.www.bilx.Login_Activity"
+            android:screenOrientation="portrait" />
 
         <!-- Sign Up Activity -->
-        <activity android:name="com.example.www.bilx.SignUp" />
+        <activity
+            android:name="com.example.www.bilx.SignUp"
+            android:screenOrientation="portrait" />
 
         <!-- User Account Activity -->
 
@@ -58,16 +64,19 @@
         <activity
             android:name="com.example.www.bilx.Accounts.User_Account"
             android:label="@string/title_activity_user__account"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustNothing" />
         <activity
             android:name="com.example.www.bilx.Accounts.Admin_Account"
             android:label="@string/title_activity_admin__account"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustNothing" />
         <activity
             android:name="com.example.www.bilx.Accounts.Club_Account"
             android:label="@string/title_activity_club__account"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustNothing" />
 

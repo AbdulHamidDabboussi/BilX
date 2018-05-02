@@ -52,32 +52,33 @@
         android:id="@+id/location_message"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/loc"
-        android:layout_alignStart="@+id/time_message"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/date_message"
+        android:layout_marginTop="242dp"
         android:text="Location:" />
 
     <TextView
         android:id="@+id/language_message2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/time_message"
-        android:layout_alignTop="@+id/lang_spinner"
+        android:layout_alignStart="@+id/location_message"
+        android:layout_centerVertical="true"
         android:text="Language:" />
 
     <TextView
         android:id="@+id/date_message"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/date"
-        android:layout_alignStart="@+id/actName_mesage"
+        android:layout_alignBottom="@+id/date"
+        android:layout_alignStart="@+id/ge_message"
         android:text="Date:" />
 
     <TextView
         android:id="@+id/time_message"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/time"
-        android:layout_alignStart="@+id/actName_mesage"
+        android:layout_alignBottom="@+id/time"
+        android:layout_alignStart="@+id/date_message"
         android:text="Time:" />
 
     <TextView
@@ -96,8 +97,36 @@
         android:layout_toStartOf="@+id/actName"
         android:text="Activity Name:" />
 
-    <EditText
+    <Button
         android:id="@+id/time"
+        android:layout_width="200dp"
+        android:layout_height="30dp"
+        android:layout_alignEnd="@+id/createClubActivitiesMessage"
+        android:layout_below="@+id/gePoints"
+        android:background="#0b113b"
+        android:backgroundTint="?android:attr/colorPrimary"
+        android:fontFamily="@font/roboto_medium"
+        android:text="Set Time"
+        android:textColor="@color/common_google_signin_btn_text_dark_pressed"
+        android:clickable="true"
+        android:focusable="true"/>
+
+    <Button
+        android:id="@+id/date"
+        android:layout_width="200dp"
+        android:layout_height="30dp"
+        android:layout_alignEnd="@+id/createClubActivitiesMessage"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="192dp"
+        android:background="#0b113b"
+        android:backgroundTint="?android:attr/colorPrimary"
+        android:text="Set Date"
+        android:textColor="@color/common_google_signin_btn_text_dark_pressed"
+        android:clickable="true"
+        android:focusable="true"/>
+
+    <EditText
+        android:id="@+id/setTime"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_alignEnd="@+id/createClubActivitiesMessage"
@@ -106,10 +135,11 @@
         android:fontFamily="@font/roboto_light"
         android:hint="hh:mm (24 hour clock)"
         android:inputType="time"
-        android:textSize="15dp" />
+        android:textSize="15dp"
+        android:visibility="invisible"/>
 
     <EditText
-        android:id="@+id/date"
+        android:id="@+id/setDate"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_alignEnd="@+id/createClubActivitiesMessage"
@@ -118,14 +148,15 @@
         android:fontFamily="@font/roboto_light"
         android:hint="dd/mm/yy"
         android:inputType="date"
-        android:textSize="15dp" />
+        android:textSize="15dp"
+        android:visibility="invisible"/>
 
     <EditText
         android:id="@+id/actDescription"
         android:layout_width="301dp"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/location_message"
         android:layout_below="@+id/actDesc_message"
+        android:layout_centerHorizontal="true"
         android:ems="10"
         android:inputType="textMultiLine" />
 
@@ -134,7 +165,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/location_message"
-        android:layout_below="@+id/lang_spinner"
+        android:layout_below="@+id/language_message2"
         android:paddingTop="20dp"
         android:text="Activity Description" />
 
@@ -158,8 +189,8 @@
         android:id="@+id/lang_spinner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/loc"
-        android:layout_centerHorizontal="true"
+        android:layout_alignStart="@+id/actName"
+        android:layout_centerVertical="true"
         android:drawSelectorOnTop="true"
         android:entries="@array/languages_offered" />
 
@@ -167,8 +198,8 @@
         android:id="@+id/loc"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/location_message"
         android:layout_alignEnd="@+id/createClubActivitiesMessage"
-        android:layout_below="@+id/date"
         android:ems="10"
         android:fontFamily="@font/roboto_light"
         android:hint="Location"

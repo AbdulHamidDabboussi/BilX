@@ -17,7 +17,8 @@
         android:theme="@style/AppTheme">
 
         <!-- Main Activity -->
-        <activity android:name=".SplashScreen">
+        <activity android:name=".SplashScreen"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -26,10 +27,12 @@
         </activity>
 
         <!-- Login Activity -->
-        <activity android:name=".Login_Activity" />
+        <activity android:name=".Login_Activity"
+            android:screenOrientation="portrait"/>
 
         <!-- Sign Up Activity -->
-        <activity android:name=".SignUp" />
+        <activity android:name=".SignUp"
+            android:screenOrientation="portrait"/>
 
         <!-- User Account Activity -->
 
@@ -41,17 +44,20 @@
             android:name=".Accounts.User_Account"
             android:windowSoftInputMode="adjustNothing"
             android:label="@string/title_activity_user__account"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".Accounts.Admin_Account"
             android:windowSoftInputMode="adjustNothing"
             android:label="@string/title_activity_admin__account"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".Accounts.Club_Account"
             android:label="@string/title_activity_club__account"
             android:windowSoftInputMode="adjustNothing"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme"
+            android:screenOrientation="portrait"/>
 
         <service
             android:name=".MyFirebaseMessagingService">
