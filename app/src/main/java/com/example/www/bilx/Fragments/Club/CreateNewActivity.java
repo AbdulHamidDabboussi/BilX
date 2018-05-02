@@ -78,11 +78,11 @@ public class CreateNewActivity extends Fragment {
                     Toast.makeText(getActivity(),"One of the fields is empty", Toast.LENGTH_LONG).show();
                 }
                 else{
-                    String activityName = actName.getText().toString();
+                    String activityName = actName.getText().toString().trim();
                     Map activityValues = new HashMap();
                     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Club Activities").child(FirebaseAuth.getInstance()
                             .getCurrentUser().getDisplayName()).child(activityName).child("GE");
-                    activityValues.put("GE",ge.getText().toString());
+                    activityValues.put("GE",ge.getText().toString().trim());
                     databaseReference.setValue(activityValues);
 
 
@@ -90,7 +90,7 @@ public class CreateNewActivity extends Fragment {
                     activityValues = new HashMap();
                     databaseReference = FirebaseDatabase.getInstance().getReference().child("Club Activities").child(FirebaseAuth.getInstance()
                             .getCurrentUser().getDisplayName()).child(activityName).child("Time");
-                    activityValues.put("Time",setTime.getText().toString());
+                    activityValues.put("Time",setTime.getText().toString().trim());
                     databaseReference.setValue(activityValues);
 
 
@@ -99,14 +99,14 @@ public class CreateNewActivity extends Fragment {
                     activityValues = new HashMap();
                     databaseReference = FirebaseDatabase.getInstance().getReference().child("Club Activities").child(FirebaseAuth.getInstance()
                             .getCurrentUser().getDisplayName()).child(activityName).child("Date");
-                    activityValues.put("Date",setDate.getText().toString());
+                    activityValues.put("Date",setDate.getText().toString().trim());
                     databaseReference.setValue(activityValues);
 
 
                     activityValues = new HashMap();
                     databaseReference = FirebaseDatabase.getInstance().getReference().child("Club Activities").child(FirebaseAuth.getInstance()
                             .getCurrentUser().getDisplayName()).child(activityName).child("Location");
-                    activityValues.put("Location",loc.getText().toString());
+                    activityValues.put("Location",loc.getText().toString().trim());
                     databaseReference.setValue(activityValues);
 
                     if (lang.getSelectedItem().toString().equals("English")){
@@ -130,7 +130,7 @@ public class CreateNewActivity extends Fragment {
                     activityValues = new HashMap();
                     databaseReference = FirebaseDatabase.getInstance().getReference().child("Club Activities").child(FirebaseAuth.getInstance()
                             .getCurrentUser().getDisplayName()).child(activityName).child("Description");
-                    activityValues.put("Description",actDesc.getText().toString());
+                    activityValues.put("Description",actDesc.getText().toString().trim());
                     databaseReference.setValue(activityValues);
 
 
@@ -140,24 +140,22 @@ public class CreateNewActivity extends Fragment {
                     activityValues.put("Status","PENDING");
                     databaseReference.setValue(activityValues);
 
-                    activityValues = new HashMap();
                     databaseReference = FirebaseDatabase.getInstance().getReference().child("Club Activities").child(FirebaseAuth.getInstance()
-                            .getCurrentUser().getDisplayName()).child(activityName).child("Creation");
-                    activityValues.put("Creation",(new Date()).getTime()+"");
-                    databaseReference.setValue(activityValues);
+                            .getCurrentUser().getDisplayName()).child(activityName);
+                    databaseReference.setPriority((new Date()).getTime());
 
                     /////////// FOR ADMIN
 
                     activityValues = new HashMap();
                     DatabaseReference databaseReference1 = FirebaseDatabase.getInstance().getReference().child("Approve Activities").child(FirebaseAuth.getInstance()
                             .getCurrentUser().getDisplayName()).child(activityName).child("GE");
-                    activityValues.put("GE",ge.getText().toString());
+                    activityValues.put("GE",ge.getText().toString().trim());
                     databaseReference1.setValue(activityValues);
 
                     activityValues = new HashMap();
                     databaseReference1 = FirebaseDatabase.getInstance().getReference().child("Approve Activities").child(FirebaseAuth.getInstance()
                             .getCurrentUser().getDisplayName()).child(activityName).child("Time");
-                    activityValues.put("Time",time.getText().toString());
+                    activityValues.put("Time",time.getText().toString().trim());
                     databaseReference1.setValue(activityValues);
 
 
@@ -165,14 +163,14 @@ public class CreateNewActivity extends Fragment {
                     activityValues = new HashMap();
                     databaseReference1 = FirebaseDatabase.getInstance().getReference().child("Approve Activities").child(FirebaseAuth.getInstance()
                             .getCurrentUser().getDisplayName()).child(activityName).child("Date");
-                    activityValues.put("Date",date.getText().toString());
+                    activityValues.put("Date",date.getText().toString().trim());
                     databaseReference1.setValue(activityValues);
 
 
                     activityValues = new HashMap();
                     databaseReference1 = FirebaseDatabase.getInstance().getReference().child("Approve Activities").child(FirebaseAuth.getInstance()
                             .getCurrentUser().getDisplayName()).child(activityName).child("Location");
-                    activityValues.put("Location",loc.getText().toString());
+                    activityValues.put("Location",loc.getText().toString().trim());
                     databaseReference1.setValue(activityValues);
 
                     if (lang.getSelectedItem().toString().equals("English")){
@@ -196,14 +194,12 @@ public class CreateNewActivity extends Fragment {
                     activityValues = new HashMap();
                     databaseReference1 = FirebaseDatabase.getInstance().getReference().child("Approve Activities").child(FirebaseAuth.getInstance()
                             .getCurrentUser().getDisplayName()).child(activityName).child("Description");
-                    activityValues.put("Description",actDesc.getText().toString());
+                    activityValues.put("Description",actDesc.getText().toString().trim());
                     databaseReference1.setValue(activityValues);
 
-                    activityValues = new HashMap();
-                    databaseReference = FirebaseDatabase.getInstance().getReference().child("Club Activities").child(FirebaseAuth.getInstance()
-                            .getCurrentUser().getDisplayName()).child(activityName).child("Creation");
-                    activityValues.put("Creation",(new Date()).getTime()+"");
-                    databaseReference.setValue(activityValues);
+                    databaseReference = FirebaseDatabase.getInstance().getReference().child("Approve Activities").child(FirebaseAuth.getInstance()
+                            .getCurrentUser().getDisplayName()).child(activityName);
+                    databaseReference.setPriority((new Date()).getTime());
 
                     /////////////////////////////////////////////////////////////////
 

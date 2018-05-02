@@ -64,9 +64,18 @@ public class ClubActivities extends android.support.v4.app.Fragment implements S
 
        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle(R.string.clubActivities);
 
+        swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_refreshClubAct);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                swipeRefreshLayout.setRefreshing(true);
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.content_frame,
+                        new ClubActivities()).commit();
+            }
+        });
+
        // Add Items ========================================================
         final DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Club Activities");
-
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -77,54 +86,67 @@ public class ClubActivities extends android.support.v4.app.Fragment implements S
                     databaseReference1.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
-                            for (DataSnapshot ds1: ds.getChildren()){
+                            for (final DataSnapshot ds1: ds.getChildren()){
                                 String str = ds1.toString();
-                                String val2 = str.substring(str.indexOf('=')+1,str.indexOf(',')).trim();
-                                String ge,time, lang, loc,desc, date,status;
-                                ge = "";
-                                time = "";
-                                lang ="";
-                                loc ="";
-                                desc= "";
-                                date = "";
-                                status = "";
-                                for (DataSnapshot ds2: ds1.getChildren()){
-                                    String str1 = ds2.toString();
-                                    String name = str1.substring(str1.lastIndexOf('{')+1,str1.lastIndexOf('='));
-                                    String val3 = str1.substring(str1.lastIndexOf('=')+1,str1.indexOf('}'));
-                                    if (name.equals("Time")){
-                                        time = val3;
-                                    }
-                                    else if (name.equals("Location")){
-                                        loc = val3;
-                                    }
-                                    else if (name.equals("GE")){
-                                        ge = val3;
-                                    }
-                                    else if (name.equals("Language")){
-                                        lang = val3;
-                                    }
-                                    else if (name.equals("Date")){
-                                        date = val3;
-                                    }
-                                    else if (name.equals("Description")){
-                                        desc = val3;
-                                    }
-                                    else if (name.equals("Status")){
-                                        if (val3.equals("True")){
-                                            status = "APPROVED";
+                                final String val2 = str.substring(str.indexOf('=')+1,str.indexOf(',')).trim();
+                                DatabaseReference databaseReference2 = FirebaseDatabase.getInstance().getReference().child("Approve Activities")
+                                        .child(FirebaseAuth.getInstance().getCurrentUser().getDisplayName());
+                                Query query = databaseReference2.orderByPriority();
+                                query.addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(DataSnapshot dataSnapshot) {
+                                        String ge, time, lang, loc, desc, date, status;
+                                        ge = "";
+                                        time = "";
+                                        lang ="";
+                                        loc ="";
+                                        desc= "";
+                                        date = "";
+                                        status = "";
+                                        for (DataSnapshot ds2: ds1.getChildren()){
+                                            String str1 = ds2.toString();
+                                            String name = str1.substring(str1.lastIndexOf('{')+1,str1.lastIndexOf('='));
+                                            String val3 = str1.substring(str1.lastIndexOf('=')+1,str1.indexOf('}'));
+                                            if (name.equals("Time")){
+                                                time = val3;
+                                            }
+                                            else if (name.equals("Location")){
+                                                loc = val3;
+                                            }
+                                            else if (name.equals("GE")){
+                                                ge = val3;
+                                            }
+                                            else if (name.equals("Language")){
+                                                lang = val3;
+                                            }
+                                            else if (name.equals("Date")){
+                                                date = val3;
+                                            }
+                                            else if (name.equals("Description")){
+                                                desc = val3;
+                                            }
+                                            else if (name.equals("Status")){
+                                                if (val3.equals("True")){
+                                                    status = "APPROVED";
+                                                }
+                                                else if (val3.equals("False")){
+                                                    status = "REJECTED";
+                                                }
+                                                else {
+                                                    status = val3;
+                                                }
+                                            }
                                         }
-                                        else if (val3.equals("False")){
-                                            status = "REJECTED";
-                                        }
-                                        else {
-                                            status = val3;
-                                        }
+                                        addItem(new ClubActivitiesObject("Activity Name: " + val2,
+                                                "GE points: " + ge, "Time: " + time, "Date: " + date, "Location: " + loc, "Language: " + lang,
+                                                "Activity Description: " + desc, "STATUS: " + status));
+
                                     }
-                                }
-                                addItem(new ClubActivitiesObject("Activity Name: " + val2,
-                                        "GE points: " + ge, "Time: " + time, "Date: " + date, "Location: " + loc, "Language: " + lang,
-                                        "Activity Description: " + desc, "STATUS: " + status));
+                                        @Override
+                                        public void onCancelled(DatabaseError databaseError) {
+
+                                        }
+                                });
 
                             }
                         }
@@ -147,8 +169,6 @@ public class ClubActivities extends android.support.v4.app.Fragment implements S
 
 
         //====================================================================
-
-
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -159,15 +179,7 @@ public class ClubActivities extends android.support.v4.app.Fragment implements S
             }
         });
 
-        swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_refreshClubAct);
-        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                swipeRefreshLayout.setRefreshing(true);
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.content_frame,
-                        new ClubActivities()).commit();
-            }
-        });
+
 
 
         return view;
@@ -192,9 +204,18 @@ public class ClubActivities extends android.support.v4.app.Fragment implements S
                 String s = clubActivitiesObject.getActivityName().substring(clubActivitiesObject.getActivityName().indexOf(':')+1,
                         clubActivitiesObject.getActivityName().length()).trim();
 
+                String status = clubActivitiesObject.getStatus();
+
                 clubActivityList.remove(viewHolder.getAdapterPosition());
                 adapter.removeAdapter(viewHolder.getAdapterPosition());
                 adapter.notifyItemRemoved(viewHolder.getAdapterPosition());
+
+                if (status.contains("PENDING")){
+                    DatabaseReference reference1 = FirebaseDatabase.getInstance().getReference().child("Approve Activities")
+                            .child(FirebaseAuth.getInstance().getCurrentUser().getDisplayName()).child(s);
+                    reference1.removeValue();
+                }
+
                 DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Club Activities")
                         .child(FirebaseAuth.getInstance().getCurrentUser().getDisplayName()).child(s);
                 reference.removeValue();

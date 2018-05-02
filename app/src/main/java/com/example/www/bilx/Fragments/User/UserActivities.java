@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 
 import com.example.www.bilx.R;
 
+import java.util.ArrayList;
+
 /**
  *  The settings fragment for the admin class.
  *  @author Hanzallah Burney
@@ -21,6 +23,7 @@ public class UserActivities extends android.support.v4.app.Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState){
         View view =  inflater.inflate(R.layout.user_activities, container, false);
         setHasOptionsMenu(true);
+
         return view;
     }
 

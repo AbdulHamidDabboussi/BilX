@@ -38,6 +38,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -88,43 +89,58 @@ public class ApproveActivities extends android.support.v4.app.Fragment implement
                     databaseReference1.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
-                            for (DataSnapshot ds1: ds.getChildren()){
+                            for (final DataSnapshot ds1: ds.getChildren()){
                                 String str = ds1.toString();
-                                String val2 = str.substring(str.indexOf('=')+1,str.indexOf(',')).trim();
-                                String ge,time, lang, loc,desc, date;
-                                ge = "";
-                                time = "";
-                                lang ="";
-                                loc ="";
-                                desc= "";
-                                date = "";
-                                for (DataSnapshot ds2: ds1.getChildren()){
-                                    String str1 = ds2.toString();
-                                    String name = str1.substring(str1.lastIndexOf('{')+1,str1.lastIndexOf('='));
-                                    String val3 = str1.substring(str1.lastIndexOf('=')+1,str1.indexOf('}'));
-                                    if (name.equals("Time")){
-                                        time = val3;
+                                final String val2 = str.substring(str.indexOf('=')+1,str.indexOf(',')).trim();
+
+                                DatabaseReference databaseReference2 = FirebaseDatabase.getInstance().getReference().child("Approve Activities")
+                                        .child(val);
+                                Query query = databaseReference2.orderByPriority();
+                                query.addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(DataSnapshot dataSnapshot) {
+                                        String ge,time, lang, loc,desc, date;
+                                        ge = "";
+                                        time = "";
+                                        lang ="";
+                                        loc ="";
+                                        desc= "";
+                                        date = "";
+                                        for (DataSnapshot ds2: ds1.getChildren()){
+                                            String str1 = ds2.toString();
+                                            String name = str1.substring(str1.lastIndexOf('{')+1,str1.lastIndexOf('='));
+                                            String val3 = str1.substring(str1.lastIndexOf('=')+1,str1.indexOf('}'));
+                                            if (name.equals("Time")){
+                                                time = val3;
+                                            }
+                                            else if (name.equals("Location")){
+                                                loc = val3;
+                                            }
+                                            else if (name.equals("GE")){
+                                                ge = val3;
+                                            }
+                                            else if (name.equals("Language")){
+                                                lang = val3;
+                                            }
+                                            else if (name.equals("Date")){
+                                                date = val3;
+                                            }
+                                            else if (name.equals("Description")){
+                                                desc = val3;
+                                            }
+                                        }
+                                        addItem(new ApproveActivitiesObject("Activity Name: "+ val2,
+                                                "Club Name: "+ val,"GE Points: "+ ge,
+                                                "Time: "+ time,"Date: "+ date,"Location: "+ loc,
+                                                "Language: "+ lang,"Activity Description: "+ desc));
                                     }
-                                    else if (name.equals("Location")){
-                                        loc = val3;
+
+                                    @Override
+                                    public void onCancelled(DatabaseError databaseError) {
+
                                     }
-                                    else if (name.equals("GE")){
-                                        ge = val3;
-                                    }
-                                    else if (name.equals("Language")){
-                                        lang = val3;
-                                    }
-                                    else if (name.equals("Date")){
-                                        date = val3;
-                                    }
-                                    else if (name.equals("Description")){
-                                        desc = val3;
-                                    }
-                                }
-                                addItem(new ApproveActivitiesObject("Activity Name: "+ val2,
-                                        "Club Name: "+ val,"GE Points: "+ ge,
-                                        "Time: "+ time,"Date: "+ date,"Location: "+ loc,
-                                        "Language: "+ lang,"Activity Description: "+ desc));
+                                });
+
                             }
                         }
                         @Override
