@@ -69,7 +69,8 @@ public class NotificationsAdmin extends android.support.v4.app.Fragment {
                 NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(getActivity())
                         .setSmallIcon(R.mipmap.ic_launcher)
                         .setContentTitle("Bilkent Notification")
-                        .setContentText(s)
+                        .setStyle(new NotificationCompat.BigTextStyle()
+                                .bigText(s))
                         .setPriority(NotificationCompat.PRIORITY_DEFAULT);
                 Notification notification = mBuilder.build();
 

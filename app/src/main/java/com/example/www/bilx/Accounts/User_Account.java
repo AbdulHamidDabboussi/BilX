@@ -120,8 +120,9 @@ public class User_Account extends AppCompatActivity
                                                 NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(getApplicationContext())
                                                         .setSmallIcon(R.mipmap.ic_launcher)
                                                         .setContentTitle("Bilkent Notification")
-                                                        .setContentText(ds2.child("Message").getValue().toString().substring(ds2.child("Message").
-                                                                getValue().toString().indexOf('=') + 1, ds2.child("Message").getValue().toString().indexOf('}')))
+                                                        .setStyle(new NotificationCompat.BigTextStyle()
+                                                                .bigText(ds2.child("Message").getValue().toString().substring(ds2.child("Message").
+                                                                        getValue().toString().indexOf('=') + 1, ds2.child("Message").getValue().toString().indexOf('}'))))
                                                         .setPriority(NotificationCompat.PRIORITY_DEFAULT);
                                                 Notification notification = mBuilder.build();
                                                 NotificationManagerCompat.from(getApplicationContext()).notify(0, notification);
@@ -171,8 +172,9 @@ public class User_Account extends AppCompatActivity
                                                 NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(getApplicationContext())
                                                         .setSmallIcon(R.mipmap.ic_launcher)
                                                         .setContentTitle("Bilkent Notification")
-                                                        .setContentText(ds2.child("Message").getValue().toString().substring(ds2.child("Message").
-                                                                getValue().toString().indexOf('=') + 1, ds2.child("Message").getValue().toString().indexOf('}')))
+                                                        .setStyle(new NotificationCompat.BigTextStyle()
+                                                                .bigText(ds2.child("Message").getValue().toString().substring(ds2.child("Message").
+                                                                        getValue().toString().indexOf('=') + 1, ds2.child("Message").getValue().toString().indexOf('}'))))
                                                         .setPriority(NotificationCompat.PRIORITY_DEFAULT);
                                                 Notification notification = mBuilder.build();
                                                 NotificationManagerCompat.from(getApplicationContext()).notify((int)Math.random()+1000, notification);
