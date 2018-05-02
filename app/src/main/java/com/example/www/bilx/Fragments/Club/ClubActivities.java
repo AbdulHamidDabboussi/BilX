@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -18,6 +19,7 @@ import android.widget.Toast;
 
 
 import com.example.www.bilx.Fragments.Admin.ApproveActivitiesObject;
+import com.example.www.bilx.Fragments.User.Notifications_User;
 import com.example.www.bilx.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -35,11 +37,13 @@ import java.util.List;
  *  @author Hanzallah Burney
  */
 
-public class ClubActivities extends android.support.v4.app.Fragment {
+public class ClubActivities extends android.support.v4.app.Fragment implements SwipeRefreshLayout.OnRefreshListener {
     public static List<ClubActivitiesObject> clubActivityList = new ArrayList<>();
     private RecyclerView recyclerView;
     private ClubActivitiesAdapter adapter;
     private FloatingActionButton fab;
+    private SwipeRefreshLayout swipeRefreshLayout;
+
 
     @Nullable
     @Override
@@ -155,6 +159,15 @@ public class ClubActivities extends android.support.v4.app.Fragment {
             }
         });
 
+        swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_refreshClubAct);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                swipeRefreshLayout.setRefreshing(true);
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.content_frame,
+                        new ClubActivities()).commit();
+            }
+        });
 
 
         return view;
@@ -190,5 +203,9 @@ public class ClubActivities extends android.support.v4.app.Fragment {
             }
         };
         return simpleCallback;
+    }
+    @Override
+    public void onRefresh(){
+        // Empty
     }
 }

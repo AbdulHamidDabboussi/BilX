@@ -13,6 +13,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.NotificationCompat;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -29,6 +30,7 @@ import android.widget.Toast;
 import com.example.www.bilx.Fragments.Club.ClubActivitiesAdapter;
 import com.example.www.bilx.Fragments.Club.ClubActivitiesObject;
 import com.example.www.bilx.Fragments.Club.CreateNewActivity;
+import com.example.www.bilx.Fragments.User.Notifications_User;
 import com.example.www.bilx.R;
 import com.example.www.bilx.SignUp;
 import com.google.firebase.auth.FirebaseAuth;
@@ -48,10 +50,12 @@ import java.util.Map;
  *  @author Hanzallah Burney
  */
 
-public class ApproveActivities extends android.support.v4.app.Fragment {
+public class ApproveActivities extends android.support.v4.app.Fragment implements SwipeRefreshLayout.OnRefreshListener {
     public static List<ApproveActivitiesObject> approveActivityList = new ArrayList<>();
     private RecyclerView recyclerView;
     private ApproveActivitiesAdapter adapter;
+    private SwipeRefreshLayout swipeRefreshLayout;
+
 
     @Nullable
     @Override
@@ -139,6 +143,15 @@ public class ApproveActivities extends android.support.v4.app.Fragment {
             }
         });
 
+        swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_refreshApprove);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                swipeRefreshLayout.setRefreshing(true);
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.content_frame,
+                        new ApproveActivities()).commit();
+            }
+        });
 
         return view;
     }
@@ -217,5 +230,9 @@ public class ApproveActivities extends android.support.v4.app.Fragment {
 
         };
         return simpleCallback;
+    }
+    @Override
+    public void onRefresh(){
+        // Empty
     }
 }

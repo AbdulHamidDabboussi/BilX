@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.SwipeRefreshLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/swipe_refreshClubAct"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+<RelativeLayout
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/club_activitiesLayout"
     android:layout_width="match_parent"
@@ -30,4 +36,5 @@
         app:srcCompat="@drawable/ic_action_add" />
 
 </RelativeLayout>
+</android.support.v4.widget.SwipeRefreshLayout>
 
