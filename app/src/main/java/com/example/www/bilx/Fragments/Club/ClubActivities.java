@@ -18,6 +18,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 
+import com.example.www.bilx.Accounts.Club_Account;
 import com.example.www.bilx.Fragments.Admin.ApproveActivitiesObject;
 import com.example.www.bilx.Fragments.User.Notifications_User;
 import com.example.www.bilx.R;
@@ -48,19 +49,11 @@ public class ClubActivities extends android.support.v4.app.Fragment implements S
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState){
-        View view =  inflater.inflate(R.layout.club_activities, container, false);
-        adapter = new ClubActivitiesAdapter(clubActivityList);
-        recyclerView = (RecyclerView) view.findViewById(R.id.club_activities_recycler_view);
-
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity().getApplicationContext());
-        recyclerView.setLayoutManager(mLayoutManager);
-        recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView.setAdapter(adapter);
+        final View view =  inflater.inflate(R.layout.club_activities, container, false);
+        final RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity().getApplicationContext());
         clubActivityList = new ArrayList<>();
-        fab = (FloatingActionButton) view.findViewById(R.id.club_activities_fab);
 
-        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(createHelperCallback());
-        itemTouchHelper.attachToRecyclerView(recyclerView);
+        fab = (FloatingActionButton) view.findViewById(R.id.club_activities_fab);
 
        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle(R.string.clubActivities);
 
@@ -74,19 +67,20 @@ public class ClubActivities extends android.support.v4.app.Fragment implements S
             }
         });
 
+
        // Add Items ========================================================
-        final DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Club Activities");
+        final DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Club Activities")
+                .child(FirebaseAuth.getInstance().getCurrentUser().getDisplayName());
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 clubActivityList = new ArrayList<>();
-                for (final DataSnapshot ds: dataSnapshot.getChildren() ){
                     DatabaseReference databaseReference1 = FirebaseDatabase.getInstance().getReference().child("Club Activities")
                             .child(FirebaseAuth.getInstance().getCurrentUser().getDisplayName());
                     databaseReference1.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
-                            for (final DataSnapshot ds1: ds.getChildren()){
+                            for (final DataSnapshot ds1: dataSnapshot.getChildren()){
                                 String str = ds1.toString();
                                 final String val2 = str.substring(str.indexOf('=')+1,str.indexOf(',')).trim();
                                 DatabaseReference databaseReference2 = FirebaseDatabase.getInstance().getReference().child("Approve Activities")
@@ -137,10 +131,20 @@ public class ClubActivities extends android.support.v4.app.Fragment implements S
                                                 }
                                             }
                                         }
+                                        recyclerView = (RecyclerView) view.findViewById(R.id.club_activities_recycler_view);
+                                        adapter = new ClubActivitiesAdapter(clubActivityList);
+
+                                        recyclerView.setLayoutManager(mLayoutManager);
+                                        recyclerView.setItemAnimator(new DefaultItemAnimator());
+                                        recyclerView.setAdapter(adapter);
+
+
                                         addItem(new ClubActivitiesObject("Activity Name: " + val2,
                                                 "GE points: " + ge, "Time: " + time, "Date: " + date, "Location: " + loc, "Language: " + lang,
                                                 "Activity Description: " + desc, "STATUS: " + status));
 
+                                        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(createHelperCallback());
+                                        itemTouchHelper.attachToRecyclerView(recyclerView);
                                     }
                                         @Override
                                         public void onCancelled(DatabaseError databaseError) {
@@ -156,8 +160,6 @@ public class ClubActivities extends android.support.v4.app.Fragment implements S
                         }
                     });
 
-
-                }
             }
 
             @Override
@@ -165,8 +167,6 @@ public class ClubActivities extends android.support.v4.app.Fragment implements S
 
             }
         });
-
-
 
         //====================================================================
         fab.setOnClickListener(new View.OnClickListener() {
@@ -178,9 +178,6 @@ public class ClubActivities extends android.support.v4.app.Fragment implements S
                 fragmentTransaction.commit();
             }
         });
-
-
-
 
         return view;
     }
@@ -199,27 +196,31 @@ public class ClubActivities extends android.support.v4.app.Fragment implements S
             }
 
             @Override
-            public void onSwiped(final RecyclerView.ViewHolder viewHolder, int direction) {
-                ClubActivitiesObject clubActivitiesObject = clubActivityList.get(viewHolder.getAdapterPosition());
-                String s = clubActivitiesObject.getActivityName().substring(clubActivitiesObject.getActivityName().indexOf(':')+1,
-                        clubActivitiesObject.getActivityName().length()).trim();
+            public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
 
-                String status = clubActivitiesObject.getStatus();
+                try {
+                    ClubActivitiesObject clubActivitiesObject = clubActivityList.get(viewHolder.getAdapterPosition());
+                    String s = clubActivitiesObject.getActivityName().substring(clubActivitiesObject.getActivityName().indexOf(':') + 1,
+                            clubActivitiesObject.getActivityName().length()).trim();
 
-                clubActivityList.remove(viewHolder.getAdapterPosition());
-                adapter.removeAdapter(viewHolder.getAdapterPosition());
-                adapter.notifyItemRemoved(viewHolder.getAdapterPosition());
+                    String status = clubActivitiesObject.getStatus();
 
-                if (status.contains("PENDING")){
-                    DatabaseReference reference1 = FirebaseDatabase.getInstance().getReference().child("Approve Activities")
+                    if (status.contains("PENDING")) {
+                        DatabaseReference reference1 = FirebaseDatabase.getInstance().getReference().child("Approve Activities")
+                                .child(FirebaseAuth.getInstance().getCurrentUser().getDisplayName()).child(s);
+                        reference1.removeValue();
+                    }
+
+                    DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Club Activities")
                             .child(FirebaseAuth.getInstance().getCurrentUser().getDisplayName()).child(s);
-                    reference1.removeValue();
-                }
+                    reference.removeValue();
+                    getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.content_frame,
+                            new ClubActivities()).commit();
+                    Snackbar.make(getActivity().findViewById(R.id.club_activitiesLayout), "Activity Deleted", Snackbar.LENGTH_LONG).show();
 
-                DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Club Activities")
-                        .child(FirebaseAuth.getInstance().getCurrentUser().getDisplayName()).child(s);
-                reference.removeValue();
-                Snackbar.make(getActivity().findViewById(R.id.club_activitiesLayout), "Activity Deleted", Snackbar.LENGTH_LONG).show();
+                }catch (Exception e){
+
+                }
 
             }
         };

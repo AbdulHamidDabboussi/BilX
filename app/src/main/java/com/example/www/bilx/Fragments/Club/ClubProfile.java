@@ -6,6 +6,7 @@ import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +25,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -74,7 +76,9 @@ public class ClubProfile extends android.support.v4.app.Fragment {
                 profile.put("Profile", clubDescriptionEditText.getText()+"");
                 reference.setValue(profile);
 
-                Toast.makeText(getActivity(),"Profile Stored", Toast.LENGTH_LONG).show();
+                reference.setPriority((new Date()).getTime());
+
+                Snackbar.make(getActivity().findViewById(R.id.club_profile), "Profile Updated", Snackbar.LENGTH_LONG).show();
             }
         });
 

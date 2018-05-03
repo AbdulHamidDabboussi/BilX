@@ -47,21 +47,10 @@ public class Notifications_User extends android.support.v4.app.Fragment implemen
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState){
        final View view = inflater.inflate(R.layout.notifications_user, container, false);
+       final RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity().getApplicationContext());
 
-
-        mAdapter = new NotificationsAdapter(notifyList);
-        recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
-
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity().getApplicationContext());
-        recyclerView.setLayoutManager(mLayoutManager);
-        recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView.setAdapter(mAdapter);
         notifyList = new ArrayList<>();
         Timer timer = new Timer();
-
-        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(createHelperCallback());
-        itemTouchHelper.attachToRecyclerView(recyclerView);
-
 
         TimerTask timerTask = new TimerTask() {
             @Override
@@ -80,6 +69,14 @@ public class Notifications_User extends android.support.v4.app.Fragment implemen
                                 String s = ds.getValue().toString();
                                 s = s.replace("_",".");
                                 String val = s.substring(s.indexOf(',')+1,s.lastIndexOf('=')).trim();
+
+                                mAdapter = new NotificationsAdapter(notifyList);
+                                recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
+
+                                recyclerView.setLayoutManager(mLayoutManager);
+                                recyclerView.setItemAnimator(new DefaultItemAnimator());
+                                recyclerView.setAdapter(mAdapter);
+
                                 if (!val.equals("Date")){
                                     addItem(new UserNotificationObject("Administrator Notification",val,""));
                                 }
@@ -87,6 +84,8 @@ public class Notifications_User extends android.support.v4.app.Fragment implemen
                                     val = s.substring(s.indexOf('{')+1,s.indexOf('=')).trim();
                                     addItem(new UserNotificationObject("Administrator Notification",val,""));
                                 }
+                                ItemTouchHelper itemTouchHelper = new ItemTouchHelper(createHelperCallback());
+                                itemTouchHelper.attachToRecyclerView(recyclerView);
                             }
                         }
                         @Override
@@ -129,17 +128,22 @@ public class Notifications_User extends android.support.v4.app.Fragment implemen
 
             @Override
             public void onSwiped(final RecyclerView.ViewHolder viewHolder, int direction) {
-                UserNotificationObject clubNotificationObject = notifyList.get(viewHolder.getAdapterPosition());
-                String subject = clubNotificationObject.getSubject();
-                subject = subject.replace(".","_");
-                notifyList.remove(viewHolder.getAdapterPosition());
-                mAdapter.removeAdapter(viewHolder.getAdapterPosition());
-                mAdapter.notifyItemRemoved(viewHolder.getAdapterPosition());
-                DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Notification List")
-                        .child(FirebaseAuth.getInstance().getCurrentUser().getDisplayName()).child(subject);
-                reference.removeValue();
-                Snackbar.make(getActivity().findViewById(R.id.user_notificationsLayout), "Notification Deleted", Snackbar.LENGTH_LONG).show();
+                try {
+                    UserNotificationObject clubNotificationObject = notifyList.get(viewHolder.getAdapterPosition());
+                    String subject = clubNotificationObject.getSubject();
+                    subject = subject.replace(".","_");
+//                notifyList.remove(viewHolder.getAdapterPosition());
+//                mAdapter.removeAdapter(viewHolder.getAdapterPosition());
+//                mAdapter.notifyItemRemoved(viewHolder.getAdapterPosition());
+                    DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Notification List")
+                            .child(FirebaseAuth.getInstance().getCurrentUser().getDisplayName()).child(subject);
+                    reference.removeValue();
+                    getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.content_frame,
+                            new Notifications_User()).commit();
+                    Snackbar.make(getActivity().findViewById(R.id.user_notificationsLayout), "Notification Deleted", Snackbar.LENGTH_LONG).show();
+                }catch (Exception e){
 
+                }
             }
         };
         return simpleCallback;

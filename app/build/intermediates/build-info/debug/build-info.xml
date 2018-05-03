@@ -5,27 +5,53 @@
     build-mode="COLD"
     density="xhdpi"
     format="10"
-    ir-eligibility="COMPATIBLE"
     plugin-version="3.1.2"
-    timestamp="1525296308684"
+    timestamp="1525363361168"
     token="-6532302876477286099"
-    verifier="COLD_SWAP_REQUESTED" >
+    verifier="R_CLASS_CHANGE" >
 
     <task
         name="javac"
-        duration="2075" />
+        duration="3280" />
     <task
         name="instant-run-dex"
         duration="0" />
     <task
         name="instant-run-transform"
-        duration="215" />
+        duration="386" />
     <task
         name="verifier"
-        duration="18" />
+        duration="166" />
 
     <artifact
+        location="C:\Users\Hanzallah Burney\Desktop\Projects\Android\BILX\app\build\intermediates\split-apk\debug\slices\slice_1.apk"
+        type="SPLIT" />
+    <artifact
+        location="C:\Users\Hanzallah Burney\Desktop\Projects\Android\BILX\app\build\intermediates\split-apk\debug\slices\slice_2.apk"
+        type="SPLIT" />
+    <artifact
+        location="C:\Users\Hanzallah Burney\Desktop\Projects\Android\BILX\app\build\intermediates\split-apk\debug\slices\slice_0.apk"
+        type="SPLIT" />
+    <artifact
         location="C:\Users\Hanzallah Burney\Desktop\Projects\Android\BILX\app\build\intermediates\split-apk\debug\slices\slice_4.apk"
+        type="SPLIT" />
+    <artifact
+        location="C:\Users\Hanzallah Burney\Desktop\Projects\Android\BILX\app\build\intermediates\split-apk\debug\slices\slice_3.apk"
+        type="SPLIT" />
+    <artifact
+        location="C:\Users\Hanzallah Burney\Desktop\Projects\Android\BILX\app\build\intermediates\split-apk\debug\slices\slice_5.apk"
+        type="SPLIT" />
+    <artifact
+        location="C:\Users\Hanzallah Burney\Desktop\Projects\Android\BILX\app\build\intermediates\split-apk\debug\slices\slice_7.apk"
+        type="SPLIT" />
+    <artifact
+        location="C:\Users\Hanzallah Burney\Desktop\Projects\Android\BILX\app\build\intermediates\split-apk\debug\slices\slice_8.apk"
+        type="SPLIT" />
+    <artifact
+        location="C:\Users\Hanzallah Burney\Desktop\Projects\Android\BILX\app\build\intermediates\split-apk\debug\slices\slice_6.apk"
+        type="SPLIT" />
+    <artifact
+        location="C:\Users\Hanzallah Burney\Desktop\Projects\Android\BILX\app\build\intermediates\split-apk\debug\slices\slice_9.apk"
         type="SPLIT" />
     <artifact
         location="C:\Users\Hanzallah Burney\Desktop\Projects\Android\BILX\app\build\intermediates\instant-run-apk\debug\app-debug.apk"
@@ -33,7 +59,7 @@
 
     <build
         build-mode="FULL"
-        timestamp="1525295781583"
+        timestamp="1525362073968"
         verifier="FULL_BUILD_REQUESTED" >
         <artifact
             location="C:\Users\Hanzallah Burney\Desktop\Projects\Android\BILX\app\build\intermediates\split-apk\debug\slices\slice_4.apk"
@@ -74,20 +100,37 @@
     </build>
     <build
         build-mode="COLD"
-        ir-eligibility="COMPATIBLE"
-        timestamp="1525296064645"
-        verifier="COLD_SWAP_REQUESTED" >
+        timestamp="1525363361168"
+        verifier="R_CLASS_CHANGE" >
         <artifact
-            location="C:\Users\Hanzallah Burney\Desktop\Projects\Android\BILX\app\build\intermediates\instant-run-apk\debug\app-debug.apk"
-            type="SPLIT_MAIN" />
-    </build>
-    <build
-        build-mode="COLD"
-        ir-eligibility="COMPATIBLE"
-        timestamp="1525296308684"
-        verifier="COLD_SWAP_REQUESTED" >
+            location="C:\Users\Hanzallah Burney\Desktop\Projects\Android\BILX\app\build\intermediates\split-apk\debug\slices\slice_1.apk"
+            type="SPLIT" />
+        <artifact
+            location="C:\Users\Hanzallah Burney\Desktop\Projects\Android\BILX\app\build\intermediates\split-apk\debug\slices\slice_2.apk"
+            type="SPLIT" />
+        <artifact
+            location="C:\Users\Hanzallah Burney\Desktop\Projects\Android\BILX\app\build\intermediates\split-apk\debug\slices\slice_0.apk"
+            type="SPLIT" />
         <artifact
             location="C:\Users\Hanzallah Burney\Desktop\Projects\Android\BILX\app\build\intermediates\split-apk\debug\slices\slice_4.apk"
+            type="SPLIT" />
+        <artifact
+            location="C:\Users\Hanzallah Burney\Desktop\Projects\Android\BILX\app\build\intermediates\split-apk\debug\slices\slice_3.apk"
+            type="SPLIT" />
+        <artifact
+            location="C:\Users\Hanzallah Burney\Desktop\Projects\Android\BILX\app\build\intermediates\split-apk\debug\slices\slice_5.apk"
+            type="SPLIT" />
+        <artifact
+            location="C:\Users\Hanzallah Burney\Desktop\Projects\Android\BILX\app\build\intermediates\split-apk\debug\slices\slice_7.apk"
+            type="SPLIT" />
+        <artifact
+            location="C:\Users\Hanzallah Burney\Desktop\Projects\Android\BILX\app\build\intermediates\split-apk\debug\slices\slice_8.apk"
+            type="SPLIT" />
+        <artifact
+            location="C:\Users\Hanzallah Burney\Desktop\Projects\Android\BILX\app\build\intermediates\split-apk\debug\slices\slice_6.apk"
+            type="SPLIT" />
+        <artifact
+            location="C:\Users\Hanzallah Burney\Desktop\Projects\Android\BILX\app\build\intermediates\split-apk\debug\slices\slice_9.apk"
             type="SPLIT" />
         <artifact
             location="C:\Users\Hanzallah Burney\Desktop\Projects\Android\BILX\app\build\intermediates\instant-run-apk\debug\app-debug.apk"

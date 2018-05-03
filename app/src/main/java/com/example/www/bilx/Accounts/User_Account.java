@@ -128,22 +128,7 @@ public class User_Account extends AppCompatActivity
                                                 Notification notification = mBuilder.build();
                                                 NotificationManagerCompat.from(getApplicationContext()).notify(0, notification);
 
-                                                //=================== For User Notifications ==================================================
-                                                String s = ds2.child("Message").getValue().toString().substring(ds2.child("Message").
-                                                        getValue().toString().indexOf('=') + 1, ds2.child("Message").getValue().toString().indexOf('}'));
 
-                                                DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Notification List")
-                                                        .child(FirebaseAuth.getInstance().getCurrentUser().getDisplayName()).child(s).child(s);
-
-                                                ref.setValue(s);
-
-
-                                                DatabaseReference ref2 = FirebaseDatabase.getInstance().getReference().child("Notification List")
-                                                        .child(FirebaseAuth.getInstance().getCurrentUser().getDisplayName()).child(s).child("Date");
-
-                                                ref2.setValue((new Date()).getTime());
-
-                                                // ===========================================================================================================================
 
                                                 DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Check Notify")
                                                         .child(FirebaseAuth.getInstance().getCurrentUser().getDisplayName()).child("Both");
@@ -180,22 +165,6 @@ public class User_Account extends AppCompatActivity
                                                 Notification notification = mBuilder.build();
                                                 NotificationManagerCompat.from(getApplicationContext()).notify((int)Math.random()+1000, notification);
 
-                                                //=================== For User Notifications ==================================================
-                                                String s = ds2.child("Message").getValue().toString().substring(ds2.child("Message").
-                                                        getValue().toString().indexOf('=') + 1, ds2.child("Message").getValue().toString().indexOf('}'));
-
-                                                DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Notification List")
-                                                        .child(FirebaseAuth.getInstance().getCurrentUser().getDisplayName()).child(s).child(s);
-
-                                                ref.setValue(s);
-
-
-                                                DatabaseReference ref2 = FirebaseDatabase.getInstance().getReference().child("Notification List")
-                                                        .child(FirebaseAuth.getInstance().getCurrentUser().getDisplayName()).child(s).child("Date");
-
-                                                ref2.setValue((new Date()).getTime());
-
-                                                // ===========================================================================================================================
 
                                                 DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Check Notify")
                                                         .child(FirebaseAuth.getInstance().getCurrentUser().getDisplayName()).child("Users");

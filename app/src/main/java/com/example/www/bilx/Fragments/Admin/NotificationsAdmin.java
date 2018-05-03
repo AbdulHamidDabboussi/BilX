@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.service.autofill.Dataset;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
 import android.view.LayoutInflater;
@@ -24,6 +25,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
@@ -64,8 +66,8 @@ public class NotificationsAdmin extends android.support.v4.app.Fragment {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String s = notify_text.getText().toString();
-                s = s.replace(".","_");
+                String str = notify_text.getText().toString();
+                final String s = str.replace(".","_");
                 NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(getActivity())
                         .setSmallIcon(R.mipmap.ic_launcher)
                         .setContentTitle("Bilkent Notification")
@@ -95,19 +97,28 @@ public class NotificationsAdmin extends android.support.v4.app.Fragment {
                                 final String name = ds.toString().substring(ds.toString().indexOf('=') + 1
                                         , ds.toString().indexOf(',')).trim();
 
-
                                 DatabaseReference check = FirebaseDatabase.getInstance().getReference()
                                         .child("Users").child(name);
                                 check.addListenerForSingleValueEvent(new ValueEventListener() {
                                     @Override
                                     public void onDataChange(DataSnapshot dataSnapshot) {
                                         if (!dataSnapshot.toString().contains("club")) {
+                                            DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Notification List")
+                                                    .child(name.trim()).child(s).child(s);
+                                            ref.setValue(s);
+
+                                            DatabaseReference ref2 = FirebaseDatabase.getInstance().getReference().child("Notification List")
+                                                    .child(name.trim()).child(s).child("Date");
+
+                                            ref2.setValue((new Date()).getTime());
+
                                             DatabaseReference dat = FirebaseDatabase.getInstance().getReference()
                                                     .child("Check Notify").child(name).child("Users");
 
                                             Map check = new HashMap();
                                             check.put("Bool", "true");
                                             dat.setValue(check);
+
                                         }
                                     }
 
@@ -124,7 +135,7 @@ public class NotificationsAdmin extends android.support.v4.app.Fragment {
 
                         }
                     });
-                    Toast.makeText(getActivity(),"Notification Sent", Toast.LENGTH_LONG).show();
+                    Snackbar.make(getActivity().findViewById(R.id.admin_notifications), "Notification Sent to Users", Snackbar.LENGTH_LONG).show();
                 }
                 else if (admin_spinner.getSelectedItem().toString().equals("Clubs")){
                     DatabaseReference current_user = FirebaseDatabase.getInstance().getReference()
@@ -132,12 +143,13 @@ public class NotificationsAdmin extends android.support.v4.app.Fragment {
                     notify.put("Value",s );
                     current_user.setValue(notify);
 
+
                     DatabaseReference users_data = FirebaseDatabase.getInstance().getReference()
                             .child("Check Notify");
                     users_data.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
-                            for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                            for (final DataSnapshot ds : dataSnapshot.getChildren()) {
                                 final String name = ds.toString().substring(ds.toString().indexOf('=') + 1
                                         , ds.toString().indexOf(',')).trim();
 
@@ -149,8 +161,19 @@ public class NotificationsAdmin extends android.support.v4.app.Fragment {
                                     @Override
                                     public void onDataChange(DataSnapshot dataSnapshot) {
                                         if (dataSnapshot.toString().contains("club")){
+                                            String name = ds.toString().substring(ds.toString().indexOf('=')+1,
+                                                    ds.toString().indexOf(','));
+                                            DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Notification List")
+                                                    .child(name.trim()).child(s).child(s);
+                                            ref.setValue(s);
+
+                                            DatabaseReference ref2 = FirebaseDatabase.getInstance().getReference().child("Notification List")
+                                                    .child(name.trim()).child(s).child("Date");
+
+                                            ref2.setValue((new Date()).getTime());
+
                                             DatabaseReference dat = FirebaseDatabase.getInstance().getReference()
-                                                    .child("Check Notify").child(name).child("Clubs");
+                                                    .child("Check Notify").child(name.trim()).child("Clubs");
 
                                             Map check = new HashMap();
                                             check.put("Bool", "true");
@@ -175,7 +198,7 @@ public class NotificationsAdmin extends android.support.v4.app.Fragment {
                         }
                     });
 
-                    Toast.makeText(getActivity(),"Notification Sent", Toast.LENGTH_LONG).show();
+                    Snackbar.make(getActivity().findViewById(R.id.admin_notifications), "Notification Sent to Clubs", Snackbar.LENGTH_LONG).show();
 
                 }
                 else{
@@ -193,8 +216,17 @@ public class NotificationsAdmin extends android.support.v4.app.Fragment {
                                     String name = ds.toString().substring(ds.toString().indexOf('=') + 1
                                             , ds.toString().indexOf(',')).trim();
 
+                                    DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Notification List")
+                                            .child(name.trim()).child(s).child(s);
+                                    ref.setValue(s);
+
+                                    DatabaseReference ref2 = FirebaseDatabase.getInstance().getReference().child("Notification List")
+                                            .child(name.trim()).child(s).child("Date");
+
+                                    ref2.setValue((new Date()).getTime());
                                     DatabaseReference dat = FirebaseDatabase.getInstance().getReference()
-                                            .child("Check Notify").child(name).child("Both");
+                                            .child("Check Notify").child(name.trim()).child("Both");
+
                                     Map check = new HashMap();
                                     check.put("Bool", "true");
                                     dat.setValue(check);
@@ -206,7 +238,7 @@ public class NotificationsAdmin extends android.support.v4.app.Fragment {
 
                             }
                         });
-                    Toast.makeText(getActivity(),"Notification Sent", Toast.LENGTH_LONG).show();
+                    Snackbar.make(getActivity().findViewById(R.id.admin_notifications), "Notification Sent to All", Snackbar.LENGTH_LONG).show();
 
                 }
                 NotificationManagerCompat.from(getActivity()).notify(0,notification);
