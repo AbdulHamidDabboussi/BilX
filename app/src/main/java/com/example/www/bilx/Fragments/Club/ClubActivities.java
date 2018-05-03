@@ -69,18 +69,18 @@ public class ClubActivities extends android.support.v4.app.Fragment implements S
 
 
        // Add Items ========================================================
-        final DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Club Activities");
+        final DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Club Activities")
+                .child(FirebaseAuth.getInstance().getCurrentUser().getDisplayName());
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 clubActivityList = new ArrayList<>();
-                for (final DataSnapshot ds: dataSnapshot.getChildren() ){
                     DatabaseReference databaseReference1 = FirebaseDatabase.getInstance().getReference().child("Club Activities")
                             .child(FirebaseAuth.getInstance().getCurrentUser().getDisplayName());
                     databaseReference1.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
-                            for (final DataSnapshot ds1: ds.getChildren()){
+                            for (final DataSnapshot ds1: dataSnapshot.getChildren()){
                                 String str = ds1.toString();
                                 final String val2 = str.substring(str.indexOf('=')+1,str.indexOf(',')).trim();
                                 DatabaseReference databaseReference2 = FirebaseDatabase.getInstance().getReference().child("Approve Activities")
@@ -160,7 +160,6 @@ public class ClubActivities extends android.support.v4.app.Fragment implements S
                         }
                     });
 
-                }
             }
 
             @Override

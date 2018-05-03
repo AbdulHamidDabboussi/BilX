@@ -65,25 +65,30 @@ public class UserClubs extends android.support.v4.app.Fragment {
                        //=====================================================================
                         DatabaseReference profileRef = FirebaseDatabase.getInstance().getReference()
                                 .child("Club profiles").child(val);
-                        profileRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                        Query query = profileRef.orderByPriority();
+                        query.addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(DataSnapshot dataSnapshot) {
-                                final String prof = dataSnapshot.getValue().toString();
-                                final String profile = prof.substring(prof.indexOf('=')+1,prof.indexOf('}'));
-                                FirebaseStorage firebaseStorage = FirebaseStorage.getInstance();
-                                StorageReference storageRef = firebaseStorage.getReference();
-                                storageRef.child(val + ".jpg").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                                    @Override
-                                    public void onSuccess(Uri uri) {
-                                        addItem(new ClubListObject(val,
-                                                profile, uri.toString()));
-                                    }
-                                }).addOnFailureListener(new OnFailureListener() {
-                                    @Override
-                                    public void onFailure(@NonNull Exception exception) {
-                                        // Handle any errors
-                                    }
-                                });
+                                try {
+                                    final String prof = dataSnapshot.getValue().toString();
+                                    final String profile = prof.substring(prof.indexOf('=') + 1, prof.indexOf('}'));
+                                    FirebaseStorage firebaseStorage = FirebaseStorage.getInstance();
+                                    StorageReference storageRef = firebaseStorage.getReference();
+                                    storageRef.child(val + ".jpg").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                        @Override
+                                        public void onSuccess(Uri uri) {
+                                            addItem(new ClubListObject(val,
+                                                    profile, uri.toString()));
+                                        }
+                                    }).addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception exception) {
+                                            // Handle any errors
+                                        }
+                                    });
+                                } catch (Exception e){
+
+                                }
                             }
 
                             @Override
@@ -109,7 +114,7 @@ public class UserClubs extends android.support.v4.app.Fragment {
     }
 
     public void addItem(final ClubListObject newItem) {
-        clubList.add(newItem);
+        clubList.add(0,newItem);
         mAdapter.notifyDataSetChanged();
 
     }
