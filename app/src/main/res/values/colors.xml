@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorPrimaryDark">#303f9f</color>
 
     <color name="darkModePrimary">#212121</color>
     <color name="darkModePrimaryDark">#000000</color>
@@ -14,6 +14,7 @@
     <color name="newColor"> #8FB222</color>
     <color name="test">#FBECDA</color>
     <color name="login_grey"> #595A5B </color>
+    <color name="cardViewColor">#87888a</color>
     <color name="text_white">#99f7e8e8</color>
     <color name="white">#ffffff</color>
     <color name="button_pressed">#66c12525</color>

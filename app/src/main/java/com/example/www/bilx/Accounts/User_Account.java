@@ -3,6 +3,7 @@ package com.example.www.bilx.Accounts;
 import android.app.Activity;
 import android.app.Notification;
 import android.content.ActivityNotFoundException;
+import android.content.ClipData;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.database.Cursor;
@@ -23,6 +24,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.AppCompatDelegate;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -51,6 +53,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.firebase.storage.FirebaseStorage;
@@ -118,8 +121,9 @@ public class User_Account extends AppCompatActivity
                                                 NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(getApplicationContext())
                                                         .setSmallIcon(R.mipmap.ic_launcher)
                                                         .setContentTitle("Bilkent Notification")
-                                                        .setContentText(ds2.child("Message").getValue().toString().substring(ds2.child("Message").
-                                                                getValue().toString().indexOf('=') + 1, ds2.child("Message").getValue().toString().indexOf('}')))
+                                                        .setStyle(new NotificationCompat.BigTextStyle()
+                                                                .bigText(ds2.child("Message").getValue().toString().substring(ds2.child("Message").
+                                                                        getValue().toString().indexOf('=') + 1, ds2.child("Message").getValue().toString().indexOf('}'))))
                                                         .setPriority(NotificationCompat.PRIORITY_DEFAULT);
                                                 Notification notification = mBuilder.build();
                                                 NotificationManagerCompat.from(getApplicationContext()).notify(0, notification);
@@ -169,8 +173,9 @@ public class User_Account extends AppCompatActivity
                                                 NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(getApplicationContext())
                                                         .setSmallIcon(R.mipmap.ic_launcher)
                                                         .setContentTitle("Bilkent Notification")
-                                                        .setContentText(ds2.child("Message").getValue().toString().substring(ds2.child("Message").
-                                                                getValue().toString().indexOf('=') + 1, ds2.child("Message").getValue().toString().indexOf('}')))
+                                                        .setStyle(new NotificationCompat.BigTextStyle()
+                                                                .bigText(ds2.child("Message").getValue().toString().substring(ds2.child("Message").
+                                                                        getValue().toString().indexOf('=') + 1, ds2.child("Message").getValue().toString().indexOf('}'))))
                                                         .setPriority(NotificationCompat.PRIORITY_DEFAULT);
                                                 Notification notification = mBuilder.build();
                                                 NotificationManagerCompat.from(getApplicationContext()).notify((int)Math.random()+1000, notification);
@@ -221,6 +226,7 @@ public class User_Account extends AppCompatActivity
         };
 
         timer.scheduleAtFixedRate(timerTask, 0, 5*1000);
+
 
         /**
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -313,8 +319,7 @@ public class User_Account extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.user__account, menu);
-
+        //getMenuInflater().inflate(R.menu.user__account, menu);
 
         // Set email in navigation drawer to user's email
         firebaseAuth = FirebaseAuth.getInstance();

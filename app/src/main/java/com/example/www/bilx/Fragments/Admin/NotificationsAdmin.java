@@ -65,10 +65,12 @@ public class NotificationsAdmin extends android.support.v4.app.Fragment {
             @Override
             public void onClick(View view) {
                 String s = notify_text.getText().toString();
+                s = s.replace(".","_");
                 NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(getActivity())
                         .setSmallIcon(R.mipmap.ic_launcher)
                         .setContentTitle("Bilkent Notification")
-                        .setContentText(s)
+                        .setStyle(new NotificationCompat.BigTextStyle()
+                                .bigText(s))
                         .setPriority(NotificationCompat.PRIORITY_DEFAULT);
                 Notification notification = mBuilder.build();
 
@@ -122,6 +124,7 @@ public class NotificationsAdmin extends android.support.v4.app.Fragment {
 
                         }
                     });
+                    Toast.makeText(getActivity(),"Notification Sent", Toast.LENGTH_LONG).show();
                 }
                 else if (admin_spinner.getSelectedItem().toString().equals("Clubs")){
                     DatabaseReference current_user = FirebaseDatabase.getInstance().getReference()
@@ -172,7 +175,7 @@ public class NotificationsAdmin extends android.support.v4.app.Fragment {
                         }
                     });
 
-
+                    Toast.makeText(getActivity(),"Notification Sent", Toast.LENGTH_LONG).show();
 
                 }
                 else{
@@ -203,10 +206,13 @@ public class NotificationsAdmin extends android.support.v4.app.Fragment {
 
                             }
                         });
+                    Toast.makeText(getActivity(),"Notification Sent", Toast.LENGTH_LONG).show();
+
                 }
                 NotificationManagerCompat.from(getActivity()).notify(0,notification);
             }
         });
+
         return view;
     }
 }

@@ -4,16 +4,16 @@
         "source": "C:\\Users\\Hanzallah Burney\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\12ea999a007989de88de33bbca02ca1c\\res\\drawable-hdpi-v4\\abc_textfield_search_activated_mtrl_alpha.9.png"
     },
     {
-        "merged": "C:\\Users\\Hanzallah Burney\\Desktop\\Projects\\Android\\BILX\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_ic_action_user.png.flat",
-        "source": "C:\\Users\\Hanzallah Burney\\Desktop\\Projects\\Android\\BILX\\app\\src\\main\\res\\drawable-xxhdpi\\ic_action_user.png"
+        "merged": "C:\\Users\\Hanzallah Burney\\Desktop\\Projects\\Android\\BILX\\app\\build\\intermediates\\res\\merged\\debug\\layout_design_navigation_item_subheader.xml.flat",
+        "source": "C:\\Users\\Hanzallah Burney\\.gradle\\caches\\transforms-1\\files-1.1\\design-26.1.0.aar\\e2e9409449faf37d9a4fe84176056e74\\res\\layout\\design_navigation_item_subheader.xml"
     },
     {
         "merged": "C:\\Users\\Hanzallah Burney\\Desktop\\Projects\\Android\\BILX\\app\\build\\intermediates\\res\\merged\\debug\\color-v23_abc_tint_edittext.xml.flat",
         "source": "C:\\Users\\Hanzallah Burney\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\12ea999a007989de88de33bbca02ca1c\\res\\color-v23\\abc_tint_edittext.xml"
     },
     {
-        "merged": "C:\\Users\\Hanzallah Burney\\Desktop\\Projects\\Android\\BILX\\app\\build\\intermediates\\res\\merged\\debug\\layout_design_navigation_item_subheader.xml.flat",
-        "source": "C:\\Users\\Hanzallah Burney\\.gradle\\caches\\transforms-1\\files-1.1\\design-26.1.0.aar\\e2e9409449faf37d9a4fe84176056e74\\res\\layout\\design_navigation_item_subheader.xml"
+        "merged": "C:\\Users\\Hanzallah Burney\\Desktop\\Projects\\Android\\BILX\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_ic_action_user.png.flat",
+        "source": "C:\\Users\\Hanzallah Burney\\Desktop\\Projects\\Android\\BILX\\app\\src\\main\\res\\drawable-xxhdpi\\ic_action_user.png"
     },
     {
         "merged": "C:\\Users\\Hanzallah Burney\\Desktop\\Projects\\Android\\BILX\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi-v4_abc_btn_switch_to_on_mtrl_00001.9.png.flat",
@@ -48,12 +48,12 @@
         "source": "C:\\Users\\Hanzallah Burney\\Desktop\\Projects\\Android\\BILX\\app\\src\\main\\res\\drawable-mdpi\\ic_action_user.png"
     },
     {
-        "merged": "C:\\Users\\Hanzallah Burney\\Desktop\\Projects\\Android\\BILX\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_googleg_standard_color_18.png.flat",
-        "source": "C:\\Users\\Hanzallah Burney\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-base-15.0.0.aar\\f650503a78e32629ea771ea3c6edbc84\\res\\drawable-hdpi-v4\\googleg_standard_color_18.png"
-    },
-    {
         "merged": "C:\\Users\\Hanzallah Burney\\Desktop\\Projects\\Android\\BILX\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_ic_action_pw.png.flat",
         "source": "C:\\Users\\Hanzallah Burney\\Desktop\\Projects\\Android\\BILX\\app\\src\\main\\res\\drawable-xxhdpi\\ic_action_pw.png"
+    },
+    {
+        "merged": "C:\\Users\\Hanzallah Burney\\Desktop\\Projects\\Android\\BILX\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_googleg_standard_color_18.png.flat",
+        "source": "C:\\Users\\Hanzallah Burney\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-base-15.0.0.aar\\f650503a78e32629ea771ea3c6edbc84\\res\\drawable-hdpi-v4\\googleg_standard_color_18.png"
     },
     {
         "merged": "C:\\Users\\Hanzallah Burney\\Desktop\\Projects\\Android\\BILX\\app\\build\\intermediates\\res\\merged\\debug\\drawable_design_snackbar_background.xml.flat",
@@ -186,6 +186,10 @@
     {
         "merged": "C:\\Users\\Hanzallah Burney\\Desktop\\Projects\\Android\\BILX\\app\\build\\intermediates\\res\\merged\\debug\\drawable_button_selected.xml.flat",
         "source": "C:\\Users\\Hanzallah Burney\\Desktop\\Projects\\Android\\BILX\\app\\src\\main\\res\\drawable\\button_selected.xml"
+    },
+    {
+        "merged": "C:\\Users\\Hanzallah Burney\\Desktop\\Projects\\Android\\BILX\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_ic_action_add.png.flat",
+        "source": "C:\\Users\\Hanzallah Burney\\Desktop\\Projects\\Android\\BILX\\app\\src\\main\\res\\drawable-xxhdpi\\ic_action_add.png"
     },
     {
         "merged": "C:\\Users\\Hanzallah Burney\\Desktop\\Projects\\Android\\BILX\\app\\build\\intermediates\\res\\merged\\debug\\color-v11_abc_background_cache_hint_selector_material_light.xml.flat",
@@ -452,6 +456,10 @@
         "source": "C:\\Users\\Hanzallah Burney\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\12ea999a007989de88de33bbca02ca1c\\res\\drawable-xxhdpi-v4\\abc_btn_radio_to_on_mtrl_015.png"
     },
     {
+        "merged": "C:\\Users\\Hanzallah Burney\\Desktop\\Projects\\Android\\BILX\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_ic_action_add.png.flat",
+        "source": "C:\\Users\\Hanzallah Burney\\Desktop\\Projects\\Android\\BILX\\app\\src\\main\\res\\drawable-xhdpi\\ic_action_add.png"
+    },
+    {
         "merged": "C:\\Users\\Hanzallah Burney\\Desktop\\Projects\\Android\\BILX\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_ic_action_approveactivities.png.flat",
         "source": "C:\\Users\\Hanzallah Burney\\Desktop\\Projects\\Android\\BILX\\app\\src\\main\\res\\drawable-hdpi\\ic_action_approveactivities.png"
     },
@@ -652,12 +660,12 @@
         "source": "C:\\Users\\Hanzallah Burney\\.gradle\\caches\\transforms-1\\files-1.1\\preference-v14-23.4.0.aar\\23fa38be16d3a7062e0a1ed24db33301\\res\\layout\\preference_widget_switch.xml"
     },
     {
-        "merged": "C:\\Users\\Hanzallah Burney\\Desktop\\Projects\\Android\\BILX\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxxhdpi_bg.png.flat",
-        "source": "C:\\Users\\Hanzallah Burney\\Desktop\\Projects\\Android\\BILX\\app\\src\\main\\res\\mipmap-xxxhdpi\\bg.png"
-    },
-    {
         "merged": "C:\\Users\\Hanzallah Burney\\Desktop\\Projects\\Android\\BILX\\app\\build\\intermediates\\res\\merged\\debug\\layout_approve_activities_faq.xml.flat",
         "source": "C:\\Users\\Hanzallah Burney\\Desktop\\Projects\\Android\\BILX\\app\\src\\main\\res\\layout\\approve_activities_faq.xml"
+    },
+    {
+        "merged": "C:\\Users\\Hanzallah Burney\\Desktop\\Projects\\Android\\BILX\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxxhdpi_bg.png.flat",
+        "source": "C:\\Users\\Hanzallah Burney\\Desktop\\Projects\\Android\\BILX\\app\\src\\main\\res\\mipmap-xxxhdpi\\bg.png"
     },
     {
         "merged": "C:\\Users\\Hanzallah Burney\\Desktop\\Projects\\Android\\BILX\\app\\build\\intermediates\\res\\merged\\debug\\layout_notification_template_lines_media.xml.flat",
@@ -1560,8 +1568,16 @@
         "source": "C:\\Users\\Hanzallah Burney\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\12ea999a007989de88de33bbca02ca1c\\res\\drawable-xxhdpi-v4\\abc_text_select_handle_middle_mtrl_dark.png"
     },
     {
+        "merged": "C:\\Users\\Hanzallah Burney\\Desktop\\Projects\\Android\\BILX\\app\\build\\intermediates\\res\\merged\\debug\\layout_create_club_activities.xml.flat",
+        "source": "C:\\Users\\Hanzallah Burney\\Desktop\\Projects\\Android\\BILX\\app\\src\\main\\res\\layout\\create_club_activities.xml"
+    },
+    {
         "merged": "C:\\Users\\Hanzallah Burney\\Desktop\\Projects\\Android\\BILX\\app\\build\\intermediates\\res\\merged\\debug\\drawable_abc_list_selector_holo_light.xml.flat",
         "source": "C:\\Users\\Hanzallah Burney\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\12ea999a007989de88de33bbca02ca1c\\res\\drawable\\abc_list_selector_holo_light.xml"
+    },
+    {
+        "merged": "C:\\Users\\Hanzallah Burney\\Desktop\\Projects\\Android\\BILX\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_ic_action_add.png.flat",
+        "source": "C:\\Users\\Hanzallah Burney\\Desktop\\Projects\\Android\\BILX\\app\\src\\main\\res\\drawable-mdpi\\ic_action_add.png"
     },
     {
         "merged": "C:\\Users\\Hanzallah Burney\\Desktop\\Projects\\Android\\BILX\\app\\build\\intermediates\\res\\merged\\debug\\layout_nav_header_admin__account.xml.flat",
@@ -1810,6 +1826,10 @@
     {
         "merged": "C:\\Users\\Hanzallah Burney\\Desktop\\Projects\\Android\\BILX\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi_bg.png.flat",
         "source": "C:\\Users\\Hanzallah Burney\\Desktop\\Projects\\Android\\BILX\\app\\src\\main\\res\\mipmap-hdpi\\bg.png"
+    },
+    {
+        "merged": "C:\\Users\\Hanzallah Burney\\Desktop\\Projects\\Android\\BILX\\app\\build\\intermediates\\res\\merged\\debug\\layout_club_activities_list.xml.flat",
+        "source": "C:\\Users\\Hanzallah Burney\\Desktop\\Projects\\Android\\BILX\\app\\src\\main\\res\\layout\\club_activities_list.xml"
     },
     {
         "merged": "C:\\Users\\Hanzallah Burney\\Desktop\\Projects\\Android\\BILX\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_common_full_open_on_phone.png.flat",
@@ -2200,6 +2220,10 @@
         "source": "C:\\Users\\Hanzallah Burney\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\12ea999a007989de88de33bbca02ca1c\\res\\drawable-xhdpi-v4\\abc_ic_star_black_36dp.png"
     },
     {
+        "merged": "C:\\Users\\Hanzallah Burney\\Desktop\\Projects\\Android\\BILX\\app\\build\\intermediates\\res\\merged\\debug\\layout_approve_activities_list.xml.flat",
+        "source": "C:\\Users\\Hanzallah Burney\\Desktop\\Projects\\Android\\BILX\\app\\src\\main\\res\\layout\\approve_activities_list.xml"
+    },
+    {
         "merged": "C:\\Users\\Hanzallah Burney\\Desktop\\Projects\\Android\\BILX\\app\\build\\intermediates\\res\\merged\\debug\\layout_preference_category.xml.flat",
         "source": "C:\\Users\\Hanzallah Burney\\.gradle\\caches\\transforms-1\\files-1.1\\preference-v7-23.4.0.aar\\05300822f0168dab35f2d2dc52bab653\\res\\layout\\preference_category.xml"
     },
@@ -2300,12 +2324,12 @@
         "source": "C:\\Users\\Hanzallah Burney\\Desktop\\Projects\\Android\\BILX\\app\\src\\main\\res\\drawable-mdpi\\ic_action_settings.png"
     },
     {
-        "merged": "C:\\Users\\Hanzallah Burney\\Desktop\\Projects\\Android\\BILX\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_abc_btn_check_to_on_mtrl_015.png.flat",
-        "source": "C:\\Users\\Hanzallah Burney\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\12ea999a007989de88de33bbca02ca1c\\res\\drawable-xhdpi-v4\\abc_btn_check_to_on_mtrl_015.png"
-    },
-    {
         "merged": "C:\\Users\\Hanzallah Burney\\Desktop\\Projects\\Android\\BILX\\app\\build\\intermediates\\res\\merged\\debug\\layout_user_club_list.xml.flat",
         "source": "C:\\Users\\Hanzallah Burney\\Desktop\\Projects\\Android\\BILX\\app\\src\\main\\res\\layout\\user_club_list.xml"
+    },
+    {
+        "merged": "C:\\Users\\Hanzallah Burney\\Desktop\\Projects\\Android\\BILX\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_abc_btn_check_to_on_mtrl_015.png.flat",
+        "source": "C:\\Users\\Hanzallah Burney\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\12ea999a007989de88de33bbca02ca1c\\res\\drawable-xhdpi-v4\\abc_btn_check_to_on_mtrl_015.png"
     },
     {
         "merged": "C:\\Users\\Hanzallah Burney\\Desktop\\Projects\\Android\\BILX\\app\\build\\intermediates\\res\\merged\\debug\\layout_notifications_faq.xml.flat",
@@ -2342,6 +2366,10 @@
     {
         "merged": "C:\\Users\\Hanzallah Burney\\Desktop\\Projects\\Android\\BILX\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_abc_ic_menu_cut_mtrl_alpha.png.flat",
         "source": "C:\\Users\\Hanzallah Burney\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\12ea999a007989de88de33bbca02ca1c\\res\\drawable-xhdpi-v4\\abc_ic_menu_cut_mtrl_alpha.png"
+    },
+    {
+        "merged": "C:\\Users\\Hanzallah Burney\\Desktop\\Projects\\Android\\BILX\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_ic_action_add.png.flat",
+        "source": "C:\\Users\\Hanzallah Burney\\Desktop\\Projects\\Android\\BILX\\app\\src\\main\\res\\drawable-hdpi\\ic_action_add.png"
     },
     {
         "merged": "C:\\Users\\Hanzallah Burney\\Desktop\\Projects\\Android\\BILX\\app\\build\\intermediates\\res\\merged\\debug\\drawable_common_google_signin_btn_text_disabled.xml.flat",

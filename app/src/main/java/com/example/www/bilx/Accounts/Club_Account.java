@@ -16,6 +16,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.AppCompatDelegate;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -101,25 +102,24 @@ public class Club_Account extends AppCompatActivity
                                                 NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(getApplicationContext())
                                                         .setSmallIcon(R.mipmap.ic_launcher)
                                                         .setContentTitle("Bilkent Notification")
-                                                        .setContentText(ds2.child("Message").getValue().toString().substring(ds2.child("Message").
-                                                                getValue().toString().indexOf('=') + 1, ds2.child("Message").getValue().toString().indexOf('}')))
+                                                        .setStyle(new NotificationCompat.BigTextStyle()
+                                                        .bigText(ds2.child("Message").getValue().toString().substring(ds2.child("Message").
+                                                                getValue().toString().indexOf('=') + 1, ds2.child("Message").getValue().toString().indexOf('}'))))
                                                         .setPriority(NotificationCompat.PRIORITY_DEFAULT);
                                                 Notification notification = mBuilder.build();
                                                 NotificationManagerCompat.from(getApplicationContext()).notify(0, notification);
 
                                                 //=================== For User Notifications ==================================================
+                                                String s = ds2.child("Message").getValue().toString().substring(ds2.child("Message").
+                                                        getValue().toString().indexOf('=') + 1, ds2.child("Message").getValue().toString().indexOf('}'));
                                                 DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Notification List")
-                                                        .child(FirebaseAuth.getInstance().getCurrentUser().getDisplayName()).child(ds2.child("Message").getValue().toString().substring(ds2.child("Message").
-                                                                getValue().toString().indexOf('=') + 1, ds2.child("Message").getValue().toString().indexOf('}'))).child(ds2.child("Message").getValue().toString().substring(ds2.child("Message").
-                                                                getValue().toString().indexOf('=') + 1, ds2.child("Message").getValue().toString().indexOf('}')));
+                                                        .child(FirebaseAuth.getInstance().getCurrentUser().getDisplayName()).child(s).child(s);
 
-                                                ref.setValue(ds2.child("Message").getValue().toString().substring(ds2.child("Message").
-                                                        getValue().toString().indexOf('=') + 1, ds2.child("Message").getValue().toString().indexOf('}')));
+                                                ref.setValue(s);
 
 
                                                 DatabaseReference ref2 = FirebaseDatabase.getInstance().getReference().child("Notification List")
-                                                        .child(FirebaseAuth.getInstance().getCurrentUser().getDisplayName()).child(ds2.child("Message").getValue().toString().substring(ds2.child("Message").
-                                                                getValue().toString().indexOf('=') + 1, ds2.child("Message").getValue().toString().indexOf('}'))).child("Date");
+                                                        .child(FirebaseAuth.getInstance().getCurrentUser().getDisplayName()).child(s).child("Date");
 
                                                 ref2.setValue((new Date()).getTime());
 
@@ -155,8 +155,9 @@ public class Club_Account extends AppCompatActivity
                                                 NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(getApplicationContext())
                                                         .setSmallIcon(R.mipmap.ic_launcher)
                                                         .setContentTitle("Bilkent Notification")
-                                                        .setContentText(ds2.child("Message").getValue().toString().substring(ds2.child("Message").
-                                                                getValue().toString().indexOf('=') + 1, ds2.child("Message").getValue().toString().indexOf('}')))
+                                                        .setStyle(new NotificationCompat.BigTextStyle()
+                                                        .bigText(ds2.child("Message").getValue().toString().substring(ds2.child("Message").
+                                                                getValue().toString().indexOf('=') + 1, ds2.child("Message").getValue().toString().indexOf('}'))))
                                                         .setPriority(NotificationCompat.PRIORITY_DEFAULT);
                                                 Notification notification = mBuilder.build();
                                                 NotificationManagerCompat.from(getApplicationContext()).notify(1, notification);

@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<android.support.v4.widget.SwipeRefreshLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/user_notificationsLayout"
+    android:id="@+id/swipe_refreshClubAct"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+<RelativeLayout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/club_activitiesLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -12,5 +18,23 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:scrollbars="vertical" />
-</LinearLayout>
+
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/club_activities_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="73dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="30dp"
+        android:layout_marginEnd="34dp"
+        android:clickable="true"
+        app:backgroundTint="?android:attr/colorPrimary"
+        app:elevation="10dp"
+        app:fabSize="normal"
+        app:rippleColor="@android:color/holo_blue_bright"
+        app:srcCompat="@drawable/ic_action_add" />
+
+</RelativeLayout>
+</android.support.v4.widget.SwipeRefreshLayout>
 

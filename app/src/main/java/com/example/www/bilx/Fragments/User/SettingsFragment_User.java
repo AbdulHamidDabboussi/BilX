@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.preference.ListPreference;
 import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceFragmentCompat;
 import android.support.v7.preference.SwitchPreferenceCompat;
@@ -36,12 +37,20 @@ import java.util.Map;
 public class SettingsFragment_User extends PreferenceFragmentCompat  {
     private SwitchPreferenceCompat darkMode;
     private Preference resetPassword;
+    private Preference reportBugs;
+    private ListPreference language;
+
+
 
     @Override
     public void onCreatePreferences(Bundle bundle, String s) {
         // Load the Preferences from the XML file
         addPreferencesFromResource(R.xml.user_preferences);
         resetPassword = (Preference) findPreference("password_reset");
+        reportBugs = (Preference) findPreference("user_report_bug");
+        language = (ListPreference) findPreference("user_languages");
+
+
 
         // Reset Password
         resetPassword.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
@@ -63,6 +72,37 @@ public class SettingsFragment_User extends PreferenceFragmentCompat  {
                 return true;
             }
         });
+
+        // Implementation of change language
+        language.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            // TODO CHANGE LANGUAGE IMPLEMENTATION
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+                if (language.getSummary().equals("English")){
+                    Toast.makeText(getActivity(), "English", Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    Toast.makeText(getActivity(), "Turkish", Toast.LENGTH_SHORT).show();
+                }
+                return true;
+            }
+        });
+
+        // Report Bugs
+        reportBugs.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            public boolean onPreferenceClick(Preference preference) {
+
+                Intent intent = new Intent(Intent.ACTION_SENDTO); // it's not ACTION_SEND
+                intent.setType("message/rfc822");
+                intent.putExtra(Intent.EXTRA_SUBJECT, "BILX Bug Report");
+                intent.setData(Uri.fromParts("mailto",
+                        "azim.burney@ug.bilkent.edu.tr", null)); // or just "mailto:" for blank
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK); // this will make such that when user returns to your app, your app is displayed, instead of the email app.
+                startActivity(intent);
+                return true;
+            }
+        });
+
 
 
         darkMode = (SwitchPreferenceCompat) findPreference("user_theme_mode");
