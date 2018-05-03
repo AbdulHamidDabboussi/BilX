@@ -4,16 +4,16 @@
         "source": "C:\\Users\\Hanzallah Burney\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\12ea999a007989de88de33bbca02ca1c\\res\\drawable-hdpi-v4\\abc_textfield_search_activated_mtrl_alpha.9.png"
     },
     {
-        "merged": "C:\\Users\\Hanzallah Burney\\Desktop\\Projects\\Android\\BILX\\app\\build\\intermediates\\res\\merged\\debug\\layout_design_navigation_item_subheader.xml.flat",
-        "source": "C:\\Users\\Hanzallah Burney\\.gradle\\caches\\transforms-1\\files-1.1\\design-26.1.0.aar\\e2e9409449faf37d9a4fe84176056e74\\res\\layout\\design_navigation_item_subheader.xml"
+        "merged": "C:\\Users\\Hanzallah Burney\\Desktop\\Projects\\Android\\BILX\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_ic_action_user.png.flat",
+        "source": "C:\\Users\\Hanzallah Burney\\Desktop\\Projects\\Android\\BILX\\app\\src\\main\\res\\drawable-xxhdpi\\ic_action_user.png"
     },
     {
         "merged": "C:\\Users\\Hanzallah Burney\\Desktop\\Projects\\Android\\BILX\\app\\build\\intermediates\\res\\merged\\debug\\color-v23_abc_tint_edittext.xml.flat",
         "source": "C:\\Users\\Hanzallah Burney\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\12ea999a007989de88de33bbca02ca1c\\res\\color-v23\\abc_tint_edittext.xml"
     },
     {
-        "merged": "C:\\Users\\Hanzallah Burney\\Desktop\\Projects\\Android\\BILX\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_ic_action_user.png.flat",
-        "source": "C:\\Users\\Hanzallah Burney\\Desktop\\Projects\\Android\\BILX\\app\\src\\main\\res\\drawable-xxhdpi\\ic_action_user.png"
+        "merged": "C:\\Users\\Hanzallah Burney\\Desktop\\Projects\\Android\\BILX\\app\\build\\intermediates\\res\\merged\\debug\\layout_design_navigation_item_subheader.xml.flat",
+        "source": "C:\\Users\\Hanzallah Burney\\.gradle\\caches\\transforms-1\\files-1.1\\design-26.1.0.aar\\e2e9409449faf37d9a4fe84176056e74\\res\\layout\\design_navigation_item_subheader.xml"
     },
     {
         "merged": "C:\\Users\\Hanzallah Burney\\Desktop\\Projects\\Android\\BILX\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi-v4_abc_btn_switch_to_on_mtrl_00001.9.png.flat",
@@ -48,12 +48,12 @@
         "source": "C:\\Users\\Hanzallah Burney\\Desktop\\Projects\\Android\\BILX\\app\\src\\main\\res\\drawable-mdpi\\ic_action_user.png"
     },
     {
-        "merged": "C:\\Users\\Hanzallah Burney\\Desktop\\Projects\\Android\\BILX\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_ic_action_pw.png.flat",
-        "source": "C:\\Users\\Hanzallah Burney\\Desktop\\Projects\\Android\\BILX\\app\\src\\main\\res\\drawable-xxhdpi\\ic_action_pw.png"
-    },
-    {
         "merged": "C:\\Users\\Hanzallah Burney\\Desktop\\Projects\\Android\\BILX\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_googleg_standard_color_18.png.flat",
         "source": "C:\\Users\\Hanzallah Burney\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-base-15.0.0.aar\\f650503a78e32629ea771ea3c6edbc84\\res\\drawable-hdpi-v4\\googleg_standard_color_18.png"
+    },
+    {
+        "merged": "C:\\Users\\Hanzallah Burney\\Desktop\\Projects\\Android\\BILX\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_ic_action_pw.png.flat",
+        "source": "C:\\Users\\Hanzallah Burney\\Desktop\\Projects\\Android\\BILX\\app\\src\\main\\res\\drawable-xxhdpi\\ic_action_pw.png"
     },
     {
         "merged": "C:\\Users\\Hanzallah Burney\\Desktop\\Projects\\Android\\BILX\\app\\build\\intermediates\\res\\merged\\debug\\drawable_design_snackbar_background.xml.flat",

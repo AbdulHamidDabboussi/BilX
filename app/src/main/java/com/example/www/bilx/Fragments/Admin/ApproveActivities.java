@@ -61,18 +61,10 @@ public class ApproveActivities extends android.support.v4.app.Fragment implement
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState){
-        View view =  inflater.inflate(R.layout.approve_activities, container, false);
-        adapter = new ApproveActivitiesAdapter(approveActivityList);
-        recyclerView = (RecyclerView) view.findViewById(R.id.approveAct_recycler_view);
+        final View view =  inflater.inflate(R.layout.approve_activities, container, false);
+        final RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity().getApplicationContext());
 
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity().getApplicationContext());
-        recyclerView.setLayoutManager(mLayoutManager);
-        recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView.setAdapter(adapter);
         approveActivityList = new ArrayList<>();
-
-        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(createHelperCallback());
-        itemTouchHelper.attachToRecyclerView(recyclerView);
 
         ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle(R.string.clubActivities);
 
@@ -129,11 +121,20 @@ public class ApproveActivities extends android.support.v4.app.Fragment implement
                                                 desc = val3;
                                             }
                                         }
+                                        adapter = new ApproveActivitiesAdapter(approveActivityList);
+                                        recyclerView = (RecyclerView) view.findViewById(R.id.approveAct_recycler_view);
+
+                                        recyclerView.setLayoutManager(mLayoutManager);
+                                        recyclerView.setItemAnimator(new DefaultItemAnimator());
+                                        recyclerView.setAdapter(adapter);
                                         addItem(new ApproveActivitiesObject("Activity Name: "+ val2,
                                                 "Club Name: "+ val,"GE Points: "+ ge,
                                                 "Time: "+ time,"Date: "+ date,"Location: "+ loc,
                                                 "Language: "+ lang,"Activity Description: "+ desc));
+                                        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(createHelperCallback());
+                                        itemTouchHelper.attachToRecyclerView(recyclerView);
                                     }
+
 
                                     @Override
                                     public void onCancelled(DatabaseError databaseError) {
@@ -220,24 +221,30 @@ public class ApproveActivities extends android.support.v4.app.Fragment implement
                     });
                     builder.setPositiveButton("Reject", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
-                            ApproveActivitiesObject approveActivitiesObject = approveActivityList.get(viewHolder.getAdapterPosition());
-                            String clubName = approveActivitiesObject.getClubName().substring(
-                                    approveActivitiesObject.getClubName().indexOf(':')+1,approveActivitiesObject.getClubName().length()).trim();
-                            String activityName = approveActivitiesObject.getActivityName().substring(
-                                    approveActivitiesObject.getActivityName().indexOf(':')+1,approveActivitiesObject.getActivityName().length()).trim();
+                            try {
+                                ApproveActivitiesObject approveActivitiesObject = approveActivityList.get(viewHolder.getAdapterPosition());
+                                String clubName = approveActivitiesObject.getClubName().substring(
+                                        approveActivitiesObject.getClubName().indexOf(':')+1,approveActivitiesObject.getClubName().length()).trim();
+                                String activityName = approveActivitiesObject.getActivityName().substring(
+                                        approveActivitiesObject.getActivityName().indexOf(':')+1,approveActivitiesObject.getActivityName().length()).trim();
 
-                            DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Club Activities")
-                                    .child(clubName).child(activityName).child("Status");
-                            Map status = new HashMap();
-                            status.put("Status","False");
-                            ref.setValue(status);
+                                DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Club Activities")
+                                        .child(clubName).child(activityName).child("Status");
+                                Map status = new HashMap();
+                                status.put("Status","False");
+                                ref.setValue(status);
 
-                            approveActivityList.remove(viewHolder.getAdapterPosition());
-                            adapter.removeAdapter(viewHolder.getAdapterPosition());
-                            adapter.notifyItemRemoved(viewHolder.getAdapterPosition());
-                            DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Approve Activities").child(clubName).child(activityName);
-                            reference.removeValue();
-                            Snackbar.make(getActivity().findViewById(R.id.approveAct), "Rejection sent to club", Snackbar.LENGTH_LONG).show();
+//                                approveActivityList.remove(viewHolder.getAdapterPosition());
+//                                adapter.removeAdapter(viewHolder.getAdapterPosition());
+//                                adapter.notifyItemRemoved(viewHolder.getAdapterPosition());
+                                DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Approve Activities").child(clubName).child(activityName);
+                                reference.removeValue();
+                                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.content_frame,
+                                        new ApproveActivities()).commit();
+                                Snackbar.make(getActivity().findViewById(R.id.approveAct), "Rejection sent to club", Snackbar.LENGTH_LONG).show();
+                            } catch (Exception e){
+
+                            }
                         }
                     }).show();
 

@@ -155,7 +155,7 @@ public class CreateNewActivity extends Fragment {
                     activityValues = new HashMap();
                     databaseReference1 = FirebaseDatabase.getInstance().getReference().child("Approve Activities").child(FirebaseAuth.getInstance()
                             .getCurrentUser().getDisplayName()).child(activityName).child("Time");
-                    activityValues.put("Time",time.getText().toString().trim());
+                    activityValues.put("Time",setTime.getText().toString().trim());
                     databaseReference1.setValue(activityValues);
 
 
@@ -163,7 +163,7 @@ public class CreateNewActivity extends Fragment {
                     activityValues = new HashMap();
                     databaseReference1 = FirebaseDatabase.getInstance().getReference().child("Approve Activities").child(FirebaseAuth.getInstance()
                             .getCurrentUser().getDisplayName()).child(activityName).child("Date");
-                    activityValues.put("Date",date.getText().toString().trim());
+                    activityValues.put("Date",setDate.getText().toString().trim());
                     databaseReference1.setValue(activityValues);
 
 
